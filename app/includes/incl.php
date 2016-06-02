@@ -1,0 +1,11 @@
+<?php
+	include("config/config.php");
+	include("config/query.php");
+	include("class/Connexion.php");
+	include("class/User.php");
+	include("class/Tip.php");
+	include("class/City.php");
+	include("class/Product.php");
+	include("class/Offer.php");
+	include("includes/sessions_control.php");
+?>

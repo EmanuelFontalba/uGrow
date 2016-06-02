@@ -1,0 +1,85 @@
+html {
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+}
+
+.popup__back {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 10;
+}
+
+.popup {
+    position: absolute;
+    top: 160px;
+    left: 10%;
+    width: 70%;
+    z-index: 500;
+    background-color: white;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.popup__content {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.popup__image {
+    width: 48%;
+    height: 50%;
+    display: inline-block;
+    vertical-align: top;
+    background: #ddd;
+}
+
+.popup__image--left, .popup__image--right {
+    width: 100%;
+    height: 100%;
+}
+
+.popup__form{
+    width: 98%;
+}
+
+.popup__form--first, .popup__form--second{
+    width: 45%;
+}
+
+.popup__form--second{
+    float: right;
+}
+
+.popup__buttons {
+    width: 75%;
+    margin: 10px auto;
+}
+
+.btn {
+    line-height: 40px;
+    width: 47%;
+}
+
+.popup__header {
+    color: #00695C;
+    text-align: center;
+    padding: 16px;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+@media only screen and (min-width: 660px) {
+    .popup {
+        left: 30%;
+        width: 40%;
+    }
+}

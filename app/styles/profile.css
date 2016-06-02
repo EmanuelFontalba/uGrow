@@ -1,0 +1,116 @@
+.profile__tips, .profile__future {
+	display: none;
+}
+
+#main #mainContainer .content {
+	background-color: #E0F2F1;
+	height: auto;
+}
+
+.paper-toolbar-0.tall {
+    height: calc(64px*3);
+}
+
+#headerContainer #mainToolbar.tall .app-name:not([style-scope]):not(.style-scope) {
+	font-size: 64px;
+}
+
+.toolbar__logo--home {
+	margin-bottom: 6%;
+    margin-left: 20%;
+}
+
+.profile__basic, .profile__offer, .profile__map, .profile__opinions, .profile__tips, .profile__future {
+	width: 96%;
+	margin: 2% 2%;
+}
+
+.left {
+	float: left;
+	margin-right: 5%;
+}
+
+.right {
+	position: absolute;
+	right: 5%;
+}
+
+.content .profile__basic .card-actions {
+	padding-bottom: 24px;
+}
+
+#headerPanelMain .content .profile__offer .card-content {
+	padding-top: 0;
+}
+
+.content .profile__offer .card-actions {
+	width: 130px;
+	margin: 0 auto;
+}
+
+.content .profile__offer paper-item {
+	min-height: 30px;
+}
+
+.card-actions > span{
+	font-weight: bold;
+}
+
+
+@media only screen and (min-width: 350px) and (max-width: 949px){
+	.profile__tips, .profile__future {
+		display: inline-block;
+	}
+}
+
+@media only screen and (min-width: 950px){
+	.profile__tips, .profile__future {
+		display: inline-block;
+	}
+
+	.up-block {
+		width: 96%;
+		margin: 0 3%;
+		padding-top: 1%;
+	}
+
+	.left-block {
+		width: 44%;
+		display: inline-block;
+	}
+
+	.right-block {
+		width: 55%;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.right-block__up {
+		width: 100%;
+	}
+
+	.profile__map {
+		width: 40%;
+		display: inline-block;
+	}
+
+	.profile__opinions {
+		width: 51%;
+		min-height: 272px;
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	.right-block__down {
+		width: 100%;
+	}
+
+	.profile__tips {
+	    min-height: 406px;
+	}
+
+	.profile__future {
+	    width: 93%;
+	    margin: 11px 4%;
+	}
+}

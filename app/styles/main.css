@@ -1,0 +1,266 @@
+/*
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+*/
+
+body {
+  background: #fafafa;
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.style-scope .iron-dropdown{
+	overflow-y: scroll;
+}
+
+#mainToolbar{
+	background-color: #009688;
+}
+
+#drawerToolbar {
+	height: 64px;
+}
+
+.toolbar__logo{
+	position: relative;
+    top: 26%;
+    left: -43%;
+    width: 120px;
+    height: 60px;
+    background: url(../images/logo.png) no-repeat center;
+    background-size: cover;
+}
+
+.toolbar__logo--menu {
+	margin-bottom: 6%;
+    margin-left: 20%;
+}
+
+.toolbar__left, .toolbar__right{
+	text-decoration: none;
+	color: white;
+}
+
+.toolbar__links{
+	position: relative;
+	top: 20%;
+	width: 190px;
+}
+
+.toolbar__right{
+	margin-left: 10%;
+}
+
+.toolbar__div-logo{
+	position: absolute;
+	top: -60px;
+	left: 3%;
+}
+
+.footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 64px;
+	background-color: rgba(0,0,0,0) !important;
+}
+
+.footer__right{
+	position: absolute;
+	right: 10px;
+}
+
+.footer__left{
+	width: 130px;
+}
+
+.footer__right--down-A{
+	display: none;
+}
+
+.footer__links{
+	text-decoration: none;
+	color: white;
+}
+
+.footer__right--up, .footer__right--down{
+	text-align: center;
+}
+
+.footer__right--up p{
+	margin-top: 0;
+}
+
+.footer__right--down-B .footer-links{
+	margin-left: 5%;
+}
+
+.footer__faq, .footer__contact{
+	display: inline-block;
+}
+
+.footer__faq{
+	margin-left: 10%;
+}
+
+.btn {
+	position: relative;
+	width: 100%;
+	font-size: 20px;
+	display: inline;
+	overflow: hidden;
+	border-width: 0;
+	outline: none;
+	border-radius: 2px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+	background-color: #FFC107;
+	color: #ecf0f1; 
+	transition: background-color .3s;
+}
+
+.ripple-con{
+	width: 80%;
+    margin-left: 9%;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+}
+
+.ripple-con,
+.btn {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after,
+.ripple {
+  content: ' ';
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border-radius: 100%;
+  animation: ripple 2s;
+}
+
+.btn:active::after,
+.ripple:active,
+.btn:active + .ripple {
+  animation: none;
+}
+
+@keyframes ripple {
+  to {
+    opacity: 0;
+    margin: -250px;
+    width: 500px;
+    height: 500px;
+  }
+}
+
+.btn:hover, .btn:focus {
+  background-color: #FFC107;
+}
+
+.btn > * {
+  position: relative;
+}
+
+.btn span {
+  display: block;
+  padding: 12px;
+}
+
+.btn:before {
+  content: "";  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 0;
+  padding-top: 0;   
+  border-radius: 100%;
+  background-color: rgba(236, 240, 241, .3); 
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%; 
+  transition: width .2s ease-out, padding-top .2s ease-out;
+}
+
+#error {
+	color: red;
+	text-align: center;
+}
+
+.fixed {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+    background: #CDDC39;
+}
+
+@media only screen and (min-width: 375px) {
+	.toolbar__logo{
+	    left: -5%;
+	    width: 120px;
+	    height: 60px;
+	}
+}
+
+@media only screen and (min-width: 600px) and (max-width: 961px) {
+	.toolbar__logo{
+		top: 10%;
+	}
+
+	.toolbar__links{
+		top: 15%;
+	}
+
+	.footer__left{
+		top: 35%;
+	}
+}
+
+@media only screen and (min-width: 961px) {
+	.toolbar__logo{
+		top: 10%;
+	}
+
+	.toolbar__links{
+		top: 17%;
+	}
+
+	.footer__left{
+		top: 35%;
+	}
+
+    .footer__right--down-A{
+		display: inline;
+	}
+
+	.footer__right--down-A .footer__links{
+		margin-left: 3%;
+	}
+
+    .footer__right--down-B{
+		display: none;
+	}
+
+	.footer__right{
+		width: 500px;
+	}
+}
