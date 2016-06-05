@@ -1,4 +1,6 @@
 window.addEventListener("load", function(){
+setTimeout(function(){
+	console.log("tiempo de espera superado");
 	var registrar = document.getElementById("register");
 	var password1 = document.getElementById("password");
 	var password2 = document.getElementById("password2");
@@ -90,4 +92,5 @@ window.addEventListener("load", function(){
 			registrar.disabled = false;
 		}
 	});
+}, 1);
 });

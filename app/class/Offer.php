@@ -69,8 +69,8 @@
 			                        </div>
 			                        <input type="text" name="idOffer" value="'.$value['id'].'" style="display:none;">
 			                        <div class="popup__buttons">
-			                            <input type="submit" class="btn" name="offer" value="Trato!!">
-			                            <button class="btn">Volver</button>
+			                            <input type="submit" class="popup__btn btn" value="Trato!!">
+										<button class="popup__btn btn">Volver</button>
 			                        </div>
 			                    </form>
 			                </div>

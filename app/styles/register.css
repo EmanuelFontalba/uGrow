@@ -14,7 +14,7 @@
 .wellcome-image{
 	position: relative;
 	width: 100%;
-	min-height: 800px;
+	min-height: 1000px;
 	background: url(../images/register.jpg) no-repeat center;
 	background-size: cover;
 }

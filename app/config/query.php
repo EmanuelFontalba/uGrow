@@ -21,6 +21,8 @@
 	define("ADD_OFFER", "INSERT INTO offers (idUser, idProduct, quantity) VALUES (:idUser, :idProduct, :quantity)");
 	define("GET_OFFER_IDPRODUCT","SELECT * FROM offers where idProduct = :idProduct");
 	define("GET_USER_ID_FOR_DIR", "SELECT * FROM users where idCity = :idCity");
-	define("GET_CITY_FOR_ID", "SELECT * FROM cities where id = :id");
+	define("GET_CITY_BY_ID", "SELECT * FROM cities where id = :id");
 	define("GET_TIPS_RECENTS", "SELECT * FROM tips ORDER BY id desc  LIMIT 0, 8");
+	define("GET_CITIES_BY_SEARCH", "SELECT * FROM cities WHERE city LIKE ");
+	define("GET_PRODUCT_BY_NAME", "SELECT * FROM products WHERE product LIKE ");
 ?>

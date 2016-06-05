@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <?php 
 include("includes/incl.php");
-if(!isset($_POST['recolecta'])){
+if(!isset($_POST['recolecta']) || !isset($_SESSION['user'])){
   header("Location: index.php");
 }
 ?>
@@ -111,8 +111,25 @@ if(!isset($_POST['recolecta'])){
           <span class="space"></span>
 
           <!-- Toolbar icons -->
+          <a href="#" class="container" tabindex="0">
+            <span>Notificaciones</span>
+            <paper-badge label="<?php echo 5;?>"></paper-badge>
+          </a>
+          <style is="custom-style">
+            .container {
+              text-decoration: none;
+              color: white;
+              display: inline-block;
+              margin-left: 30px;
+              margin-right: 30px;
+            }
+            .container > paper-badge {
+              --paper-badge-margin-left: 20px;
+              --paper-badge-margin-bottom: 0px;
+              --paper-badge-background: #CDDC39;
+            }
+          </style>
           <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search" id="search"></paper-icon-button>
 
           <!-- Application name -->
           <div class="middle middle-container">
@@ -238,7 +255,7 @@ if(!isset($_POST['recolecta'])){
             </section> -->
           </iron-pages>
         </div>
-        <paper-fab icon="add" class="fixed"></paper-fab>
+        <a href="offer.php"><paper-fab icon="shopping-basket" class="fixed"></paper-fab></a>
       </paper-scroll-header-panel>
     </paper-drawer-panel>
 
@@ -286,7 +303,7 @@ if(!isset($_POST['recolecta'])){
             popup.style.display="block";
           });
         }
-      }, 2000);
+      }, 1);
       
 
     });

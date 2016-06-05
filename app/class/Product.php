@@ -57,4 +57,12 @@
 			$product = $this->_connexion->query(GET_ID_PRODUCT, array(":product"=>$name));
 			return $product['product'];
 		}
+
+		public function optionsAjax($name, $search)
+		{
+			$products = $this->_connexion->query(GET_PRODUCT_BY_NAME."'%".$search."%'", array());
+			foreach ($products as $key => $product) {
+				echo "<option name='".$name."' value='".$product['id']."'>".$product['product']."</option>";
+			}
+		}
 	}

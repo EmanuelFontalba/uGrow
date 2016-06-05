@@ -188,6 +188,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <paper-card class="card" elevation="1">
                         <div class="card__content">
                             <h3 class="card__header">Edita tus datos</h3>
+                            <p id="error"></p>
                             <form method="post" action="settings.php" id="form">
                                 <paper-input class="card__name" name="name" label="Nombre" required>Nombre</paper-input>
                                 <paper-input class="card__surname" name="surname" label="Apellidos" required>Apellidos</paper-input>
@@ -275,7 +276,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </paper-card>
                 </section>
             </div>
-            <a href="offer.php"><paper-fab icon="add" class="fixed"></paper-fab></a>
+            
+            <a href="offer.php"><paper-fab icon="shopping-basket" class="fixed"></paper-fab></a>
         </paper-scroll-header-panel>
     </paper-drawer-panel>
 

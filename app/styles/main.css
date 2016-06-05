@@ -213,6 +213,50 @@ body {
     background: #CDDC39;
 }
 
+#searchAjax{
+	border: none;
+    background: transparent;
+    border-bottom: solid 1px dimgrey;
+    margin: 15px 0;
+    padding-bottom: 4px;
+    font-size: 16px;
+	font-family: 'Roboto';
+}
+
+#searchAjax:focus{
+	outline: none;
+	border-bottom: solid 2px #009688;
+}
+
+*::-webkit-input-placeholder {
+    color: #777 !important;
+}
+*:-moz-placeholder {
+    color: #777 !important;
+}
+*::-moz-placeholder {
+    color: #777 !important;
+}
+*:-ms-input-placeholder {
+    color: #777 !important;
+}
+
+select{
+	background: transparent;
+    border: none;
+    border-bottom: solid 1px dimgrey;
+    padding-bottom: 3px;
+    min-width: 40%;
+    color: dimgrey;
+    font-family: 'Roboto';
+    font-size: 16px;
+}
+
+select:focus{
+	outline: none;
+	border-bottom: solid 2px #009688;
+}
+
 @media only screen and (min-width: 375px) {
 	.toolbar__logo{
 	    left: -5%;

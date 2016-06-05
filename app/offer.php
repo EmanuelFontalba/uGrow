@@ -136,14 +136,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="card-offer__content">
                         <h3 class="card-offer__header">Ofrecer Producto</h3>
                         <form method="post" action="offer.php" id="form">
-                            <paper-dropdown-menu label="Producto">
-                                <select class="dropdown-content" name="products">
-                                    <?php 
-                                      $products=new Product();
-                                      $products->createOptions("products");
-                                    ?>
-                                </select>
-                            </paper-dropdown-menu>
+                            <input id="searchAjax" type="text" name="searchAjax" placeholder="Producto">
+                            <select id="resultados" name="busquedaAjax">
+                                <?php 
+                                  $products=new Product();
+                                  $products->createOptions("busquedaAjax");
+                                ?>
+                            </select>
+                            <script>
+                                document.getElementById("searchAjax").addEventListener("keyup", function(){
+                                    var xhttp;
+                                    if (window.XMLHttpRequest) {
+                                        xhttp = new XMLHttpRequest(); // code for modern browsers
+                                    }
+                                    else {
+                                        xhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
+                                    }
+                                    xhttp.onreadystatechange = function() {
+                                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                                            document.getElementById("resultados").innerHTML = xhttp.responseText;
+                                        }
+                                    };
+                                    xhttp.open("GET", "ajaxResponses/products_response.php?busqueda="+document.getElementById("searchAjax").value, true);
+                                    xhttp.send();
+                                });
+                            </script>
+                            
                             <paper-input id="weight" class="card-offer__weight" name="weight" label="Kilos disponibles" required>Kilos disponibles</paper-input>
                             <div class="ripple-con">
                                 <input id="publish" class="btn" type="submit" name="offer" value="Ofrecer"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
@@ -157,7 +175,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <h1>"Comparte!! Crea experiencia UGrow"</h1>
             </div>
         </div>
-        <paper-fab icon="add" class="fixed"></paper-fab>
+        
+        <a href="offer.php"><paper-fab icon="shopping-basket" class="fixed"></paper-fab></a>
     </paper-scroll-header-panel>
 
     <paper-toast id="toast">

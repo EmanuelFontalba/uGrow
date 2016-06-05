@@ -87,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <div class="toolbar__links">
                     <span class="toolbar__left">Ya eres grower?</span>
-                    <a href="#" class="toolbar__right" "Inicia Sesión">Inicia Sesión</a> <!-- enlazar este <a> con la pagina de inicia sesion. Recordar insertar dinámicamente clase para ocultar en caso de existir variable de sesion-->
+                    <a href="session.php" class="toolbar__right" "Inicia Sesión">Inicia Sesión</a> <!-- enlazar este <a> con la pagina de inicia sesion. Recordar insertar dinámicamente clase para ocultar en caso de existir variable de sesion-->
                 </div>
             </paper-toolbar>
             <div class="wellcome-image">
@@ -125,18 +125,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <paper-input id="mail" class="card__mail" name="mail" label="Mail" required>Mail</paper-input>
                             <paper-input  id="birthdate" class="card__birthdate" name="birthdate" label="Fecha nacimiento" required>Fecha nacimiento</paper-input>
                             <paper-input id="address" class="card__address" name="address" label="Dirección huerto" required>Dirección huerto</paper-input>
-                            <paper-dropdown-menu label="Ciudad">
-                                <select class="dropdown-content" name="city">
-                                    <?php 
-                                    	$city = new City();
-                                    	$city->createOptions("city");
-                                    ?>
-                                </select>
-                            </paper-dropdown-menu>
+                            <input id="searchAjax" type="text" name="searchAjax" placeholder="Ciudad">
+                            <select id="resultados" name="busquedaAjax">
+                                <?php 
+                                        $city = new City();
+                                        $city->createOptions("busquedaAjax");
+                                ?>
+                            </select>
+                            <script>
+                                document.getElementById("searchAjax").addEventListener("keyup", function(){
+                                    var xhttp;
+                                    if (window.XMLHttpRequest) {
+                                        xhttp = new XMLHttpRequest(); // code for modern browsers
+                                    }
+                                    else {
+                                        xhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
+                                    }
+                                    xhttp.onreadystatechange = function() {
+                                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                                            document.getElementById("resultados").innerHTML = xhttp.responseText;
+                                        }
+                                    };
+                                    xhttp.open("GET", "ajaxResponses/cities_response.php?busqueda="+document.getElementById("searchAjax").value, true);
+                                    xhttp.send();
+                                });
+                            </script>
+                            
                             <iron-autogrow-textarea class="card__about" name="description" rows="4" placeholder="Descripción"></iron-autogrow-textarea>
                             <paper-checkbox  id="checkbox" class="checkbox">Acepto las condiciones</paper-checkbox>
                             <div class="ripple-con">
-                                <input class="btn" type="submit" name="register" value="Registrar">
+                                <input id="register" class="btn" type="submit" name="register" value="Registrar">
                                 <span class="ripple"></span>
                             </div>
                         </form>

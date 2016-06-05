@@ -233,7 +233,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     </div>
                 </paper-card>
 	        </div>
-            <paper-fab icon="add" class="fixed"></paper-fab>
+            
+            <a href="offer.php"><paper-fab icon="shopping-basket" class="fixed"></paper-fab></a>
       	</paper-scroll-header-panel>
     </paper-drawer-panel>
 

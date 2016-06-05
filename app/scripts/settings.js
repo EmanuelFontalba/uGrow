@@ -1,5 +1,5 @@
 window.addEventListener("load", function(){
-
+setTimeout(function(){
 	function captureEditElements(){
 		var registrar = document.getElementById("register");
 		var password1 = document.getElementById("password");
@@ -157,6 +157,8 @@ window.addEventListener("load", function(){
 
 	console.log(infoTabSm);
 
+	document.getElementById("error").innerHTML = "";
+
 	infoTabLg.addEventListener("click", function(){
 		showSelectedSection(infoSection);
 	});
@@ -196,5 +198,5 @@ window.addEventListener("load", function(){
 	closeTabSm.addEventListener("click", function(){
 		showSelectedSection(closeSection);
 	});
-
+}, 1);
 });
