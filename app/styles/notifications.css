@@ -1,0 +1,102 @@
+body {
+	background-color: #E0F2F1;
+}
+
+#headerPanelMain .content {
+	height: 500px;
+}
+
+.forms {
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.card-notifications {
+	width: 90%;
+	position: absolute;
+	left: 5%;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 10px;
+    top: 200px;
+}
+
+.card-notifications__list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.card-notifications__row--left {
+    *width: 64%;
+    width: 100%;
+    display: inline-block;
+}
+
+.card-notifications__row--right {
+    width: 100%;
+    *display: inline-block;
+}
+
+.card-notifications p {
+    font-style: italic;
+}
+
+.accept-button, .deny-button {
+    width: 48%;
+    display: inline-block;
+}
+
+.ripple-con, #deny{
+    background-color: #C62828;
+}
+
+.btn {
+	line-height: 40px;
+    font-size: 15px;
+}
+
+.ripple-con{
+    width: 100%;
+    margin: 0;
+}
+
+#accept-form, #deny-form, #done-form {
+    text-align: center;
+}
+
+#done-form .btn{
+    background-color: #26A69A;
+}
+
+@media only screen and (min-width: 350px) {
+    .btn {
+        font-size: 17px;
+    }
+    
+    .ripple-con {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 780px) {
+    .card-notifications__row--left {
+        width: 62%;
+        display: inline-block;
+        padding: 0 5px;
+    }
+
+    .card-notifications__row--right {
+        width: 35%;
+        display: inline-block;
+    }
+    
+    .btn {
+        font-size: 17px;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    .btn {
+        font-size: 20px;
+    }
+}

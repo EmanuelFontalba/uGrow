@@ -7,5 +7,7 @@
 	include("class/City.php");
 	include("class/Product.php");
 	include("class/Offer.php");
+	include("class/Notification.php");
+	include("class/Comment.php");
 	include("includes/sessions_control.php");
 ?>

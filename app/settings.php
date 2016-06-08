@@ -11,6 +11,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <?php
     include("includes/incl.php");
     include("includes/settings_controls.php");
+    $notif = new Notification();
+    $id_user = $_SESSION['user'][0]['id'];
 ?>
 
 <html lang="en">
@@ -106,6 +108,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <span class="space"></span>
 
                 <!-- Toolbar icons -->
+                <a href="notifications.php" class="container" tabindex="0">
+                    <span>Notificaciones</span>
+                    <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
+                  </a>
+                  <style is="custom-style">
+                    .container {
+                      text-decoration: none;
+                      color: white;
+                      display: inline-block;
+                      margin-left: 30px;
+                      margin-right: 30px;
+                    }
+                    .container > paper-badge {
+                      --paper-badge-margin-left: 20px;
+                      --paper-badge-margin-bottom: 0px;
+                      --paper-badge-background: #CDDC39;
+                    }
+                  </style>
                 <paper-icon-button icon="refresh"></paper-icon-button>
                 <paper-icon-button icon="search" id="search"></paper-icon-button>
 

@@ -69,8 +69,8 @@
 			                        </div>
 			                        <input type="text" name="idOffer" value="'.$value['id'].'" style="display:none;">
 			                        <div class="popup__buttons">
-			                            <input type="submit" class="popup__btn btn" value="Trato!!">
-										<button class="popup__btn btn">Volver</button>
+			                            <input type="submit" class="popup__btn btn" name="trato" value="Trato!!">
+										<button class="popup__btn btn" name="volveri">Volver</button>
 			                        </div>
 			                    </form>
 			                </div>
@@ -119,6 +119,11 @@
 			}
 
 			return $this->_connexion->query(GET_OFFER_IDPRODUCT, array(":idProduct" => $prod_id));
+		}
+
+		public function get_byId($id)
+		{
+			return $this->_connexion->query(GET_OFFER_ID, array(":id"=>$id));
 		}
 	}
 

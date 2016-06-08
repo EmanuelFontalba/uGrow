@@ -13,6 +13,8 @@ include("includes/incl.php");
 if(!isset($_POST['recolecta']) || !isset($_SESSION['user'])){
   header("Location: index.php");
 }
+$notif = new Notification();
+$id_user = $_SESSION['user'][0]['id'];
 ?>
 
 <html lang="en">
@@ -111,9 +113,9 @@ if(!isset($_POST['recolecta']) || !isset($_SESSION['user'])){
           <span class="space"></span>
 
           <!-- Toolbar icons -->
-          <a href="#" class="container" tabindex="0">
+          <a href="notifications.php" class="container" tabindex="0">
             <span>Notificaciones</span>
-            <paper-badge label="<?php echo 5;?>"></paper-badge>
+            <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
           </a>
           <style is="custom-style">
             .container {
@@ -195,64 +197,6 @@ if(!isset($_POST['recolecta']) || !isset($_SESSION['user'])){
 
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
             <section data-route="home">
-              
-              <!-- <paper-material elevation="1">
-                <my-greeting></my-greeting>
-
-                <p class="subhead">You now have:</p>
-                <my-list></my-list>
-
-                <p>Looking for more Web App layouts? Check out our <a href="https://github.com/PolymerElements/app-layout-templates">layouts</a> collection. You can also <a href="http://polymerelements.github.io/app-layout-templates/">preview</a> them live.</p>
-              </paper-material>
-
-              <paper-material elevation="1">
-                <p>This is another card.</p>
-              </paper-material>
-
-              <paper-material elevation="1">
-                <h1 id="license">License</h1>
-                <p>Everything in this repo is BSD style license unless otherwise specified.</p>
-                <p>Copyright (c) 2015 The Polymer Authors. All rights Me interesa!d.</p>
-                <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
-                <ul>
-                <li>Redistributions of source code must retain the above copyright
-                notice, this list of conditions and the following disclaimer.</li>
-                <li>Redistributions in binary form must reproduce the above
-                copyright notice, this list of conditions and the following disclaimer
-                in the documentation and/or other materials provided with the
-                distribution.</li>
-                <li>Neither the name of Google Inc. nor the names of its
-                contributors may be used to endorse or promote products derived from
-                this software without specific prior written permission.</li>
-                </ul>
-                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
-              </paper-material>
-            </section> -->
-
-            <!-- <section data-route="users">
-              <paper-material elevation="1">
-                <h2 class="page-title">Users</h2>
-                <p>This is the users section</p>
-                <a href$="{{baseUrl}}users/Addy">Addy</a>
-                <a href$="{{baseUrl}}users/Rob">Rob</a>
-                <a href$="{{baseUrl}}users/Chuck">Chuck</a>
-                <a href$="{{baseUrl}}users/Sam">Sam</a>
-              </paper-material>
-            </section>
-
-            <section data-route="user-info">
-              <paper-material elevation="1">
-                <h2 class="page-title">User: {{params.name}}</h2>
-                <div>This is {{params.name}}'s section</div>
-              </paper-material>
-            </section>
-
-            <section data-route="contact">
-              <paper-material elevation="1">
-                <h2 class="page-title">Contact</h2>
-                <p>This is the contact section</p>
-              </paper-material>
-            </section> -->
           </iron-pages>
         </div>
         <a href="offer.php"><paper-fab icon="shopping-basket" class="fixed"></paper-fab></a>
@@ -262,24 +206,6 @@ if(!isset($_POST['recolecta']) || !isset($_SESSION['user'])){
     <paper-toast id="toast">
       <span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
     </paper-toast>
-
-    <!-- Uncomment next block to enable Service Worker support (1/2) -->
-    <!--
-    <paper-toast id="caching-complete"
-                 duration="6000"
-                 text="Caching complete! This app will work offline.">
-    </paper-toast>
-
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          base-uri="bower_components/platinum-sw/bootstrap"
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="fastest"
-                         cache-config-file="cache-config.json">
-      </platinum-sw-cache>
-    </platinum-sw-register>
-    -->
 
   </template>
 
@@ -294,15 +220,17 @@ if(!isset($_POST['recolecta']) || !isset($_SESSION['user'])){
       
       setTimeout(function(){
         var botones = document.getElementsByClassName('dealButton');
-      console.log(botones);
+        
         for(var i=0; i<botones.length; i++){
-          var id = botones[i].getAttribute("go");
-          console.log(botones[i]);
-          botones[i].addEventListener("click", function(){
-            var popup = document.getElementById(id);
-            popup.style.display="block";
-          });
+		      var ev = botones[i];
+		      ev.addEventListener("click", function(event){
+		      	event.preventDefault();
+		      	var id = this.getAttribute("go");
+		      	var element = document.getElementById(id);
+		        element.style.display="block";
+		      });
         }
+        console.log("Listo");
       }, 1);
       
 

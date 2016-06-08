@@ -25,4 +25,5 @@
 	define("GET_TIPS_RECENTS", "SELECT * FROM tips ORDER BY id desc  LIMIT 0, 8");
 	define("GET_CITIES_BY_SEARCH", "SELECT * FROM cities WHERE city LIKE ");
 	define("GET_PRODUCT_BY_NAME", "SELECT * FROM products WHERE product LIKE ");
+	define("GET_OFFER_ID", "SELECT * FROM offers where id = :id");
 ?>

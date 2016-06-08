@@ -4,11 +4,24 @@
 */
 class Comment
 {
-	$_connexion;
+	private $_connexion;
 
-	function __construct()
+	public function __construct()
 	{
-		$this->_connexion = new Connexion();
+		$this->_connexion = new Conexion();
+	}
+
+	public function add($creator, $target, $comment, $value)
+	{
+		$this->_connexion->query(
+			"INSERT INTO comments(idUser_creator, idUser_target, content, value) values (:creator, :target, :comment, :value)",
+			array(
+				":creator"=>$creator,
+				":target"=>$target,
+				":comment"=>$comment,
+				":value"=>$value
+				)
+			);
 	}
 
 	private function getAll()
