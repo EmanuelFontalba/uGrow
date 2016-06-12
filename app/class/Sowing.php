@@ -4,22 +4,35 @@
 */
 class Sowing
 {
-	$_connexion;
+	private $_connexion;
 	
-	function __construct()
+	public function __construct()
 	{
-		$this->_connexion = new Connexion();
+		$this->_connexion = new Conexion();
 	}
 
 	public function addSowing($idUser, $product, $date)
 	{
-		$product = new Product();
-		$idProduct = $product->getID($product);
-		$this->_connexion->query(ADD_SOWING, array(":idUser"=>$idUser, ":product"=>$idProduct, ":date"=>$date));
+		
+		$this->_connexion->query(
+			"INSERT INTO siembra (idUser, idProduct, date) values (:idUser, :product, :date)", 
+			array(":idUser"=>$idUser, ":product"=>$product, ":date"=>$date));
 	}
 
-	public function getSowings($idUser)
+	private function getSowings($idUser)
 	{
-		return $this->_connexion->query(GET_SOWINGS, array(":idUser" => $idUser));
+		return $this->_connexion->query(
+			"SELECT * FROM siembra where idUser = :idUser", 
+			array(":idUser" => $idUser));
+	}
+
+	public function show($idUser)
+	{
+		$product_obj = new Product();
+		$sowings = $this->getSowings($idUser);
+		foreach ($sowings as $key => $sowing) {
+			$p = $product_obj->getProduct($sowing['idProduct']);
+				echo "<paper-item>".$p[0]['product']."<span class='right'>Fecha prevista: ".$sowing['date']."</span></paper-item>";
+		}
 	}
 }

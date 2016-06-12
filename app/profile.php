@@ -32,6 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     $comment_obj = new Comment();
     $offer_obj = new Offer();
+    $sowing_obj  = new Sowing();
 
 ?>
 
@@ -89,8 +90,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       border-top: 1px solid #CCC;
       padding-top: 10px;
     }
+
+    .item_comment{
+        min-height: 40px;
+    }
+
     .tip .title-text{
         color: white !important;
+    }
+
+    .delete{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+        border-radius: 20px;
+        border: 2px solid white;
+        background: #F44336;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        font-weight: bold;
     }
   </style>
 </head>
@@ -156,8 +178,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       --paper-badge-background: #CDDC39;
                     }
                   </style>
-                <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
-                <paper-icon-button icon="search" id="search"></paper-icon-button>
+                <a style="color: white;" href="index.php"><paper-icon-button icon="home"></paper-icon-button></a>
 
                 <!-- Application name -->
                 <div class="middle middle-container">
@@ -220,7 +241,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </paper-listbox>
                             </div>
                         </paper-card>
-                        <paper-card class="profile__opinions" heading="Opiniones">
+                        <paper-card class="profile__opinions" heading="Últimas opiniones">
                             <div class="card-content">
                                 
                                 <?php $comment_obj->showComments($user['id']);?>
@@ -242,15 +263,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </div>
                 <paper-card class="profile__future" heading="Próximas siembras">
                     <div class="card-content">
-                        <template is="dom-bind">
-                            <iron-ajax url="data.json" last-response="{{data}}" auto></iron-ajax>
-                            <iron-list items="[[data]]" as="item">
-                                <template>
-                                    <div>Producto: [[item.product]]</div>
-                                    <div>Fecha recogida: [[item.date]]</div>
-                                </template>
-                            </iron-list>
-                        </template>
+                        <paper-listbox multi>
+                                    <?php $sowing_obj->show($user['id']);?>
+                        </paper-listbox>
                     </div>
                 </paper-card>
 	        </div>

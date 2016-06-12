@@ -47,12 +47,9 @@ body {
 
 .toolbar__links{
 	position: relative;
-	top: 20%;
+	text-align: right;
+	top: 34%;
 	width: 190px;
-}
-
-.toolbar__right{
-	margin-left: 10%;
 }
 
 .toolbar__div-logo{
@@ -285,7 +282,7 @@ select:focus{
 	}
 
 	.toolbar__links{
-		top: 17%;
+		top: 12%;
 	}
 
 	.footer__left{

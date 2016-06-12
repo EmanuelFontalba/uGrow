@@ -32,4 +32,9 @@
         $user->close_account($_SESSION['user'][0]['id']);
         header("Location: includes/logout.php");
     } 
+
+    if(isset($_POST['new_recolecta'])){
+        $sowing = new Sowing();
+        $sowing->addSowing($_SESSION['user'][0]['id'], $_POST['busquedaAjax'], $_POST['date']);
+    }
 ?>

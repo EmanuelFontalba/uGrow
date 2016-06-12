@@ -9,5 +9,6 @@
 	include("class/Offer.php");
 	include("class/Notification.php");
 	include("class/Comment.php");
+	include("class/Sowing.php");
 	include("includes/sessions_control.php");
 ?>

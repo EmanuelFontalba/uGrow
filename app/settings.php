@@ -108,11 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <span class="space"></span>
 
                 <!-- Toolbar icons -->
-                <a href="notifications.php" class="container" tabindex="0">
-                    <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
-                    <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
-                  </a>
-                  <style is="custom-style">
+                <style is="custom-style">
                     .container {
                       text-decoration: none;
                       color: white;
@@ -126,9 +122,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       --paper-badge-background: #CDDC39;
                     }
                   </style>
-                                <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
-
-                <paper-icon-button icon="search" id="search"></paper-icon-button>
+                <a href="notifications.php" class="container" tabindex="0">
+                    <span><?php echo $_SESSION['user'][0]['name'];?></span>
+                    <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
+                  </a>
+                  
+                <a style="color: white;" href="index.php"><paper-icon-button icon="home"></paper-icon-button></a>
 
                 <!-- Application name -->
                 <div class="middle middle-container">
@@ -272,17 +271,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <div class="card__content">
                             <h3 class="card__header">Crea Futura Siembra</h3>
                             <form method="post" action="settings.php" id="form">
-                                <paper-dropdown-menu label="Producto">
-                                    <paper-listbox class="dropdown-content" selected="1">
-                                        <paper-item>Acelga</paper-item>
-                                        <paper-item>Tomate</paper-item>
-                                        <paper-item>Zanahoria</paper-item>
-                                        <paper-item>Lechuga</paper-item>
-                                    </paper-listbox>
-                                </paper-dropdown-menu>
+                                <input id="searchAjax" type="text" name="searchAjax" placeholder="Producto">
+                                <select id="resultados" name="busquedaAjax">
+                                    <?php 
+                                      $products=new Product();
+                                      $products->createOptions("busquedaAjax");
+                                    ?>
+                                </select>
+                                <script>
+                                    document.getElementById("searchAjax").addEventListener("keyup", function(){
+                                        var xhttp;
+                                        if (window.XMLHttpRequest) {
+                                            xhttp = new XMLHttpRequest(); // code for modern browsers
+                                        }
+                                        else {
+                                            xhttp = new ActiveXObject("Microsoft.XMLHTTP"); // code for IE6, IE5
+                                        }
+                                        xhttp.onreadystatechange = function() {
+                                            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                                                document.getElementById("resultados").innerHTML = xhttp.responseText;
+                                            }
+                                        };
+                                        xhttp.open("GET", "ajaxResponses/products_response.php?busqueda="+document.getElementById("searchAjax").value, true);
+                                        xhttp.send();
+                                    });
+                                </script>
                                 <paper-input id="date" class="card__date" name="date" label="Fecha prevista recolecta" required>Fecha prevista recolecta</paper-input>
                                 <div class="ripple-con">
-                                    <input class="btn" type="submit" name="publish" value="Publicar"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
+                                    <input class="btn" type="submit" name="new_recolecta" value="Publicar"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
                                     <span class="ripple"></span>
                                 </div>
                             </form>

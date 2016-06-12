@@ -36,17 +36,24 @@ class Comment
 			array(":idUser"=>$idUser));
 	}
 
+	public function getCommentsLimit($idUser)
+	{
+		return $this->_connexion->query(
+			"SELECT * FROM comments where idUser_target = :idUser ORDER BY id desc LIMIT 0, 5 ", 
+			array(":idUser"=>$idUser));
+	}
+
 	public function showComments($idUser)
 	{
-		$comments = $this->getComments($idUser);
+		$comments = $this->getCommentsLimit($idUser);
 		foreach ($comments as $key => $comment) {
 			$user = new User();
 			$user = $user->getAllUser_forId($comment['idUser_creator']);
 			
 			echo "<paper-listbox multi class='comment'>
-                <paper-item><i>".$user[0]['name']."</i></paper-item>
+                <paper-item class='item_comment'><i>".$user[0]['name']." ".$this->stars($comment['value'])."</i></paper-item>
                 
-                <paper-item>".$comment['content']."</paper-item>
+                <paper-item class='item_comment'>".$comment['content']."</paper-item>
             </paper-listbox>";
 			
 			
@@ -68,6 +75,12 @@ class Comment
 			$media = $sum / $count;
 		}
 
+		return $this->stars($media);
+            
+	}
+
+	private function stars($media)
+	{
 		if($media>4){
 			return '<iron-icon class="star" icon="star"></iron-icon>
                   <iron-icon class="star" icon="star"></iron-icon>
@@ -117,6 +130,5 @@ class Comment
                  	<iron-icon class="star grey" icon="star"></iron-icon>
                  	<iron-icon class="star grey" icon="star"></iron-icon>
                  	<iron-icon class="star grey" icon="star"></iron-icon>';
-            
 	}
 }

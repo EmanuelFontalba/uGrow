@@ -4,7 +4,7 @@
     $id_user = $_SESSION['user'][0]['id'];
 		?>
 		<a href="notifications.php" class="container" tabindex="0">
-            <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
+            <span><?php echo $_SESSION['user'][0]['name'];?></span>
             <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
           </a>
           <style is="custom-style">
@@ -21,12 +21,13 @@
               --paper-badge-background: #CDDC39;
             }
           </style>
-		<a href="settings.php" class="toolbar__left">Panel de administración</a> <!-- hacer página de inicio sesion y enlazar aqui -->
-        <a href="includes/logout.php" class="toolbar__right">Cerrar Sesión</a>
+		    <a style="color: white;" href="settings.php" class="toolbar__left"><paper-icon-button icon="settings"></paper-icon-button></a>
+        <a style="color: white;" href="includes/logout.php" class="toolbar__right"><paper-icon-button icon="power-settings-new"></paper-icon-button></a>
+       
 		<?php
 	}else{
 		?>
-		<a href="session.php" class="toolbar__left">Inicia Sesión</a> <!-- hacer página de inicio sesion y enlazar aqui -->
+		    <a href="session.php" class="toolbar__left">Inicia Sesión</a> <!-- hacer página de inicio sesion y enlazar aqui -->
         <a href="register.php" class="toolbar__right">Regístrate</a>
 		<?php
 	}

@@ -60,7 +60,7 @@ class Tip
 	private function get_recent_user($idUser)
 	{
 		return $this->_connexion->query(
-			"SELECT * FROM tips where idUser = :idUser ORDER BY id desc  LIMIT 0, 8 ",
+			"SELECT * FROM tips where idUser = :idUser",
 			array(":idUser"=>$idUser));
 	}
 
@@ -88,14 +88,26 @@ class Tip
 		foreach ($recent as $key => $tip) {
 			$random = rand(1,8);
 			?>
-			<a href="http://<?php echo $tip['link'];?>" target="blank"><paper-card class="tip" style="width: 49%; vertical-align:top; margin-bottom: 10px;" heading="<?php echo $tip['title'];?>" image="./images/tip<?php echo $random;?>.jpg" class="tips__tip">
+			<div style="display: inline-block; vertical-align: top; width: 49%; position: relative;"><a href="http://<?php echo $tip['link'];?>" target="blank"><paper-card class="tip" style="width: 100%; vertical-align:top; margin-bottom: 10px;" heading="<?php echo $tip['title'];?>" image="./images/tip<?php echo $random;?>.jpg" class="tips__tip">
                   <div class="card-content" style="color: #222;">
                     <?php echo $tip['content'];?>
                   </div>
                 </paper-card></a>
+                <?php
+                if(!isset($_GET['id'])){
+                ?>
+                <a class="delete" href="deletetip.php?id=<?php echo $tip['id'];?>">X</a></div>
 			
 			<?php
+			}
 		}
+	}
+
+	public function delete($id)
+	{
+		$this->_connexion->query(
+			"DELETE FROM tips where id = :id",
+			array(":id"=>$id));
 	}
 
 }

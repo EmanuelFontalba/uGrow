@@ -148,8 +148,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               --paper-badge-background: #CDDC39;
             }
           </style>
-            <paper-icon-button icon="refresh"></paper-icon-button>
-            <paper-icon-button icon="search" id="search"></paper-icon-button>
+            <paper-icon-button icon="home"></paper-icon-button>
 
           <!-- Application name -->
             <div class="middle middle-container">

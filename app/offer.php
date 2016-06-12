@@ -110,9 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span class="space"></span>
 
           <!-- Toolbar icons -->
-                            <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
-
-            <paper-icon-button icon="search" id="search"></paper-icon-button>
+                            <a style="color: white;" href="index.php"><paper-icon-button icon="home"></paper-icon-button></a>
 
           <!-- Application name -->
             <div class="middle middle-container">

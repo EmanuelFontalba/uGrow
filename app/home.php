@@ -68,6 +68,13 @@ $id_user = $_SESSION['user'][0]['id'];
   <style is="custom-style" include="shared-styles"></style>
 
   <link rel="stylesheet" type="text/css" href="styles/popup.css">
+  <style type="text/css">
+    .popup__form select{
+          margin-bottom: 10px;
+          margin-top: 10px;
+          margin-left: 55px;
+    }
+  </style>
 </head>
 
 <body unresolved>
@@ -131,7 +138,7 @@ $id_user = $_SESSION['user'][0]['id'];
               --paper-badge-background: #CDDC39;
             }
           </style>
-                          <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
+                          <a style="color: white;" href="index.php"><paper-icon-button icon="home"></paper-icon-button></a>
 
 
           <!-- Application name -->

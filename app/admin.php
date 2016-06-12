@@ -8,7 +8,29 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+<?php 
+  include("includes/incl.php");
 
+  if($_SESSION['auth'] == false){
+    header("Location: index.php");
+  }
+
+  if($_SESSION['user'][0]['rol'] != 'admin'){
+    header("Location: index.php");
+  }
+
+  $product_obj = new Product();
+  $user_obj = new User();
+
+  if(isset($_POST['insert-product'])){
+    $product_obj->add($_POST['product']);
+  }
+
+  if(isset($_POST['delete-user'])){
+    $user_array = $user_obj->getUser_forUserName($_POST['user_name']);
+    $user_obj->close_account($user_array[0]['id']);
+  }
+?>
 <html lang="en">
 
 <head>
@@ -92,9 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span class="space"></span>
 
           <!-- Toolbar icons -->
-                            <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
-
-            <paper-icon-button icon="search" id="search"></paper-icon-button>
+                            <a style="color: white;" href="index.php"><paper-icon-button icon="home"></paper-icon-button></a>
 
           <!-- Application name -->
             <div class="middle middle-container">
@@ -119,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="card-product__content">
                         <h3 class="card-product__header--large">Crea Nueva Categoría De Producto</h3>
                         <h3 class="card-product__header--small">Nuevo Producto</h3>
-                        <form method="post" action="/admin.php" id="form">
+                        <form method="post" action="admin.php" id="form">
                             <paper-input class="card-product__product" name="product" label="Nombre del Producto" required>Nombre del Producto</paper-input>
                             <div class="ripple-con">
                                 <input id="modify" class="btn" type="submit" name="insert-product" value="Guardar"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
@@ -131,8 +151,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-card class="card-user">
                     <div class="card-user__content">
                         <h3 class="card-user__header">Eliminar Usuario</h3>
-                        <form method="post" action="/admin.php" id="form">
-                            <paper-input class="card-user__user" name="product" label="Nombre del Usuario" required>Nombre del Usuario</paper-input>
+                        <form method="post" action="admin.php" id="form">
+                            <paper-input class="card-user__user" name="user_name" label="Nombre del Usuario" required>Nombre del Usuario</paper-input>
                             <div class="ripple-con">
                                 <input id="modify" class="btn" type="submit" name="delete-user" value="Eliminar"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
                                 <span class="ripple"></span>

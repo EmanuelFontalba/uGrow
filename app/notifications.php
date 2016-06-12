@@ -135,9 +135,7 @@ $id_user = $_SESSION['user'][0]['id'];
               --paper-badge-background: #CDDC39;
             }
           </style>
-                            <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
-
-            <paper-icon-button icon="search" id="search"></paper-icon-button>
+                            <a style="color: white;" href="index.php"><paper-icon-button icon="home"></paper-icon-button></a>
 
           <!-- Application name -->
             <div class="middle middle-container">
