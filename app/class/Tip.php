@@ -57,6 +57,13 @@ class Tip
 		return $recent;
 	}
 
+	private function get_recent_user($idUser)
+	{
+		return $this->_connexion->query(
+			"SELECT * FROM tips where idUser = :idUser ORDER BY id desc  LIMIT 0, 8 ",
+			array(":idUser"=>$idUser));
+	}
+
 	public function show_recent()
 	{
 		
@@ -64,7 +71,24 @@ class Tip
 		foreach ($recent as $key => $tip) {
 			$random = rand(1,8);
 			?>
-			<a href="http://<?php echo $tip['link'];?>" target="blank"><paper-card heading="<?php echo $tip['title'];?>" image="./images/tip<?php echo $random;?>.jpg" class="tips__tip">
+			<a href="http://<?php echo $tip['link'];?>" target="blank"><paper-card  heading="<?php echo $tip['title'];?>" image="./images/tip<?php echo $random;?>.jpg" class="tips__tip">
+                  <div class="card-content" style="color: #222;">
+                    <?php echo $tip['content'];?>
+                  </div>
+                </paper-card></a>
+			
+			<?php
+		}
+	}
+
+	public function show_recent_user($idUser)
+	{
+		
+		$recent = $this->get_recent_user($idUser);
+		foreach ($recent as $key => $tip) {
+			$random = rand(1,8);
+			?>
+			<a href="http://<?php echo $tip['link'];?>" target="blank"><paper-card class="tip" style="width: 49%; vertical-align:top; margin-bottom: 10px;" heading="<?php echo $tip['title'];?>" image="./images/tip<?php echo $random;?>.jpg" class="tips__tip">
                   <div class="card-content" style="color: #222;">
                     <?php echo $tip['content'];?>
                   </div>

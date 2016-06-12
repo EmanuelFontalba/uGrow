@@ -23,14 +23,16 @@
 			$user_obj = new User();
 			$product_obj = new Product();
 			$location_obj = new City();
+			$comment_obj = new Comment();
 			$result_string = "";
 			foreach ($result as $key => $value) {
 				$user = $user_obj->getAllUser_forId($value['idUser']);
 				$p = $product_obj->getProduct($value['idProduct']);
-				$location = $location_obj->get($user[0]['idCity']); 
+				$location = $location_obj->get($user[0]['idCity']);
+				$stars = $comment_obj->showStars($user[0]['id']); 
 				$result_string.='<div class="results__item">
                     <paper-card image="users/'.$user[0]['user'].'/profile.jpeg">
-                        <div class="card-content">
+                        <a style="text-decoration: none; color: black;" href="profile.php?id='.$user[0]['id'].'"><div class="card-content">
                             <div class="results__name">'.$user[0]['name'].' '.$user[0]['lastname'].'
                                 <div class="results__location">
                                     <iron-icon icon="icons:room"></iron-icon>
@@ -38,12 +40,10 @@
                                 </div>
                             </div>
                             <div class="results__stars">
-                                <iron-icon class="star" icon="star"></iron-icon>
-                                <iron-icon class="star" icon="star"></iron-icon>
-                                <iron-icon class="star" icon="star"></iron-icon>
+                                '.$stars.'
                             </div>
                             <p class="results__about">'.$user[0]['description'].'</p>
-                        </div>
+                        </div></a>
                         <div class="card-actions">
                             <div class="results__product">'.$p[0]['product'].'</div><div class="results__amount">'.$value['quantity'].'</div>
                             <paper-button class="results__button dealButton" go="'.$value['id'].'">Me interesa!</paper-button>
@@ -124,6 +124,32 @@
 		public function get_byId($id)
 		{
 			return $this->_connexion->query(GET_OFFER_ID, array(":id"=>$id));
+		}
+
+		public function modify_quantity($id, $quantity)
+		{
+			$this->_connexion->query(
+				"UPDATE offers SET quantity = :quantity where id = :id",
+				array(
+						":quantity" => $quantity,
+						":id" => $id
+					)
+				);
+		}
+
+		public function show_forUser($idUser)
+		{
+			$product_obj = new Product();
+			$offers = $this->_connexion->query(
+				"SELECT * FROM offers where idUser = :id",
+				array(
+						":id" => $idUser
+					)
+				);
+			foreach ($offers as $key => $value) {
+				$p = $product_obj->getProduct($value['idProduct']);
+				echo "<paper-item>".$p[0]['product']."<span class='right'>".$value['quantity']."</span></paper-item>";
+			}
 		}
 	}
 

@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   include("includes/incl.php");
   if(isset($_POST['offer'])){
     $offer = new Offer();
-    $offer->add($_SESSION['user'][0]['id'], $_POST['products'], $_POST['weight']);
+    $offer->add($_SESSION['user'][0]['id'], $_POST['busquedaAjax'], $_POST['weight']);
   }
 ?>
 <html lang="en">
@@ -94,7 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-icon icon="settings"></iron-icon>
               <span>Settings</span>
           </a>
-          <a>
+          <a href="includes/logout.php">
               <iron-icon icon="exit-to-app"></iron-icon>
               <span>Logout</span>
           </a>
@@ -110,7 +110,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span class="space"></span>
 
           <!-- Toolbar icons -->
-            <paper-icon-button icon="refresh"></paper-icon-button>
+                            <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
+
             <paper-icon-button icon="search" id="search"></paper-icon-button>
 
           <!-- Application name -->

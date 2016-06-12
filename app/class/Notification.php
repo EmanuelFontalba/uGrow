@@ -12,32 +12,33 @@ class Notification
 		$this->_connexion = new Conexion();
 	}
 
-	private function create($e, $r, $pr_interest, $pr_offer, $quantity, $type)
+	private function create($e, $r, $pr_interest, $pr_offer, $quantity, $type, $idOffer)
 	{
 		return $this->_connexion->query(
-			"INSERT INTO notifications(emiter, recept, product_interest, product_offer, quantity, type) VALUES (:e, :r, :product_interest, :product_offer, :quantity, :type)",
+			"INSERT INTO notifications(emiter, recept, product_interest, product_offer, quantity, type, idOffer) VALUES (:e, :r, :product_interest, :product_offer, :quantity, :type, :idOffer)",
 			array(
 				":e"=>$e,
 				":r"=>$r,
 				":product_interest" => $pr_interest,
 				":product_offer" => $pr_offer,
 				":quantity" => $quantity,
-				":type" => $type
+				":type" => $type,
+				":idOffer" => $idOffer
 			));
 	}
 
-	public function trade($e, $r, $pr_interest, $pr_offer, $quantity)
+	public function trade($e, $r, $pr_interest, $pr_offer, $quantity, $idOffer)
 	{
 		$type = "trade";
-		$this->create($e, $r, $pr_interest, $pr_offer, $quantity, $type);
+		$this->create($e, $r, $pr_interest, $pr_offer, $quantity, $type, $idOffer);
 		header("Location: index.php");
 		return null;
 	}
 
-	public function product_ok($e, $r, $pr_interest, $pr_offer, $quantity)
+	public function product_ok($e, $r, $pr_interest, $pr_offer, $quantity, $idOffer)
 	{
 		$type = "ok";
-		$this->create($e, $r, $pr_interest, $pr_offer, $quantity, $type);
+		$this->create($e, $r, $pr_interest, $pr_offer, $quantity, $type, $idOffer);
 		//header("Location: comment.php?id=$e");
 		return null;
 	}
@@ -53,7 +54,8 @@ class Notification
 			$notification[0]['emiter'], 
 			$notification[0]['product_interest'], 
 			$notification[0]['product_offer'], 
-			$notification[0]['quantity']
+			$notification[0]['quantity'],
+			$notification[0]['idOffer']
 			);
 		$this->delete($id);
 		return null; 
@@ -94,8 +96,9 @@ class Notification
 		echo'
 		<li class="card-notifications__row">
                                 <div class="card-notifications__row--left">
-                                    <p>"El usuario '.$name_em.' quiere intercambiar contigo sus '.$array['quantity'].' kilos de '.$pr_offer.'
+                                    <p>"El usuario <a href="profile.php?id='.$user[0]['id'].'">'.$name_em.'</a> quiere intercambiar contigo sus '.$array['quantity'].' kilos de '.$pr_offer.'
                                         por tus '.$pr_interest.'"</p>
+                                        <p style="font-size: 9px;">Puedes hacer click en el nombre de usuario para ver su perfil</p>
                                 </div>
                                 <div class="card-notifications__row--right">
                                 <form method="post" action="confirm.php?id='.$array['id'].'" id="accept-form">
@@ -132,8 +135,9 @@ class Notification
 		echo '
 							<li>
                                 <div class="card-notifications__row--left">
-                                	<p>"El usuario '.$name_em.' acepta intercambiar contigo sus '.$array['quantity'].' kilos de '.$pr_offer.'
+                                	<p>"El usuario <a href="profile.php?id='.$user[0]['id'].'">'.$name_em.'</a> acepta intercambiar contigo sus '.$array['quantity'].' kilos de '.$pr_offer.'
                                         por tus '.$pr_interest.'"</p>
+                                        <p style="font-size: 9px;">Puedes hacer click en el nombre de usuario para ver su perfil</p>
                                 </div>
                                 <div class="card-notifications__row--right">
                                     <div class="done-button">

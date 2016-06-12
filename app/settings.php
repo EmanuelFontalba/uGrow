@@ -92,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <iron-icon icon="settings"></iron-icon>
                     <span>Settings</span>
                 </a>
-                <a>
+                <a href="includes/logout.php">
                     <iron-icon icon="exit-to-app"></iron-icon>
                     <span>Logout</span>
                 </a>
@@ -109,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 <!-- Toolbar icons -->
                 <a href="notifications.php" class="container" tabindex="0">
-                    <span>Notificaciones</span>
+                    <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
                     <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
                   </a>
                   <style is="custom-style">
@@ -126,7 +126,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       --paper-badge-background: #CDDC39;
                     }
                   </style>
-                <paper-icon-button icon="refresh"></paper-icon-button>
+                                <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
+
                 <paper-icon-button icon="search" id="search"></paper-icon-button>
 
                 <!-- Application name -->
@@ -210,15 +211,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <h3 class="card__header">Edita tus datos</h3>
                             <p id="error"></p>
                             <form method="post" action="settings.php" id="form">
-                                <paper-input class="card__name" name="name" label="Nombre" required>Nombre</paper-input>
-                                <paper-input class="card__surname" name="surname" label="Apellidos" required>Apellidos</paper-input>
-                                <paper-input class="card__user" name="user" label="Usuario" required>Usuario</paper-input>
+                                <paper-input class="card__name" name="name" label="Nombre" value="<?php 
+                                echo $_SESSION['user'][0]['name'];?>" required>Nombre</paper-input>
+                                <paper-input class="card__surname" name="surname" label="Apellidos" required value="<?php 
+                                echo $_SESSION['user'][0]['lastname'];?>" >Apellidos</paper-input>
+                                <paper-input class="card__user" name="user" label="Usuario" required value="<?php 
+                                echo $_SESSION['user'][0]['user'];?>" >Usuario</paper-input>
                                 <paper-input type="password" id="password" class="card__password" name="password" label="Contraseña" required>Contraseña</paper-input>
                                 <paper-input type="password" id="password2" class="card__password2" name="password2" label="Repita contraseña" required>Repita contraseña</paper-input>
-                                <paper-input id="mail" class="card__mail" name="mail" label="Mail" required>Mail</paper-input>
-                                <paper-input id="birthdate" class="card__birthdate" name="birthdate" label="Fecha nacimiento" required>Fecha nacimiento</paper-input>
-                                <paper-input id="address" class="card__address" name="address" label="Dirección huerto" required>Dirección huerto</paper-input>
-                                <iron-autogrow-textarea class="card__about" name="description" rows="4" placeholder="Descripción"></iron-autogrow-textarea>
+                                <paper-input id="mail" class="card__mail" name="mail" label="Mail" required value="<?php 
+                                echo $_SESSION['user'][0]['mail'];?>" >Mail</paper-input>
+                                <paper-input id="birthdate" class="card__birthdate" name="birthdate" label="Fecha nacimiento" required value="<?php 
+                                echo $_SESSION['user'][0]['birthdate'];?>" >Fecha nacimiento</paper-input>
+                                <paper-input id="address" class="card__address" name="address" label="Dirección huerto" required value="<?php 
+                                echo $_SESSION['user'][0]['location'];?>" >Dirección huerto</paper-input>
+                                <iron-autogrow-textarea class="card__about" name="description" rows="4" placeholder="Descripción" value="<?php 
+                                echo $_SESSION['user'][0]['description'];?>" ></iron-autogrow-textarea>
                                 <div class="ripple-con">
 	                                <input id="modify" class="btn" type="submit" name="modify" value="Guardar"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
 	                                <span class="ripple"></span>

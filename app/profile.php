@@ -11,22 +11,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <?php
     include("includes/incl.php");
-    if(isset($_POST['modify'])){
-        $user = new User();
-        $user->modify(
-                'fonty',//cambiar por el de la sesion cuando exista
-                $_POST['name'],
-                $_POST['surname'],
-                $_POST['user'],
-                $_POST['password'],
-                $_POST['mail'],
-                $_POST['birthdate'],
-                $_POST['description'],
-                $_POST['address']
-            );
+    $user_obj = new User();
+    if($_SESSION['auth']==false){
+        header("Location: index.php");
     }
+
+    if(isset($_GET['id'])){
+        $user = $user_obj->getAllUser_ForId($_GET['id'])[0];
+    }else{
+        $user = $_SESSION['user'][0];
+    }
+
     $notif = new Notification();
     $id_user = $_SESSION['user'][0]['id'];
+
+    //---code----//
+    $city_obj = new City();
+    $city_array = $city_obj->get($user['idCity'])[0];
+    $city = $city_array['city'];
+
+    $comment_obj = new Comment();
+    $offer_obj = new Offer();
+
 ?>
 
 <html lang="en">
@@ -78,6 +84,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- For shared styles, shared-styles.html import in elements.html -->
     <style is="custom-style" include="shared-styles"></style>
+    <style type="text/css">
+    .comment{
+      border-top: 1px solid #CCC;
+      padding-top: 10px;
+    }
+    .tip .title-text{
+        color: white !important;
+    }
+  </style>
 </head>
 
 <body unresolved>
@@ -107,7 +122,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <iron-icon icon="settings"></iron-icon>
                     <span>Settings</span>
                 </a>
-                <a>
+                <a href="includes/logout.php">
                     <iron-icon icon="exit-to-app"></iron-icon>
                     <span>Logout</span>
                 </a>
@@ -124,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 <!-- Toolbar icons -->
                 <a href="notifications.php" class="container" tabindex="0">
-                    <span>Notificaciones</span>
+                    <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
                     <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
                   </a>
                   <style is="custom-style">
@@ -141,7 +156,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       --paper-badge-background: #CDDC39;
                     }
                   </style>
-                <paper-icon-button icon="refresh"></paper-icon-button>
+                <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
                 <paper-icon-button icon="search" id="search"></paper-icon-button>
 
                 <!-- Application name -->
@@ -166,7 +181,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         --iron-icon-height: 16px;
                         color: var(--paper-amber-500);
                     }
-                    iron-icon.star:last-of-type { color: var(--paper-grey-500); }
+                    iron-icon.star.grey { color: var(--paper-grey-500); }
                     .profile__collect { color: var(--primary-color); }
                     google-map {
                         height: 150px;
@@ -174,66 +189,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 </style>
                 <div class="up-block">
                     <div class="left-block">
-                        <paper-card class="profile__basic" heading="Amanda Lopez" image="./images/1.jpg">
+                        <paper-card class="profile__basic" heading="<?php echo $user['name'].' '.$user['lastname'];?>" image="users/<?php echo $user['user'];?>/profile.jpeg">
                             <div class="card-content">
-                                Tengo más de diez años de experiencia en horticultura urbana, el ecologismo es mi pasión, todas mis recolectas son sostenibles.
+                                <?php echo $user['description'];?>
                             </div>
                             <div class="card-actions">
-                                <span class="left">35 años</span>
+                                
                                 <div class="left">
-                                    <iron-icon class="star" icon="star"></iron-icon>
-                                    <iron-icon class="star" icon="star"></iron-icon>
-                                    <iron-icon class="star" icon="star"></iron-icon>
+                                    <?php echo($comment_obj->showStars($user['id']));?>
                                 </div>
-                                <span class="left">Pozoblanco</span>
+                                <span class="left"><?php echo $city;?></span>
                             </div>
                         </paper-card>
                         <paper-card class="profile__offer" heading="Ofrezco">
                             <div class="card-content">
                                 <paper-listbox multi>
-                                    <paper-item>Tomate<span class="right">15kg</span></paper-item>
-                                    <paper-item>Calabacín<span class="right">7kg</span></paper-item>
-                                    <paper-item>Pimiento<span class="right">9kg</span></paper-item>
+                                    <?php $offer_obj->show_ForUser($user['id']);?>
                                 </paper-listbox>
-                            </div>
-                            <div class="card-actions">
-                                <paper-button class="profile__collect">Recolectar!</paper-button>
                             </div>
                         </paper-card>
                     </div>
                     <div class="right-block">
                         <div class="right-block__up">
-                            <paper-card class="profile__map" heading="C/ Arcos de la Frontera, 34. Córdoba">
+                        <paper-card class="profile__map" heading="<?php echo $user['location'];?>">
                             <div class="card-content">
-                                <google-map latitude="37.77493" longitude="-122.41942" zoom></google-map>
+                                <paper-listbox multi>
+                                    <paper-item>Email:</paper-item>
+                                    
+                                    <paper-item><?php echo $user['mail'];?></paper-item>
+                                </paper-listbox>
                             </div>
                         </paper-card>
                         <paper-card class="profile__opinions" heading="Opiniones">
                             <div class="card-content">
-                                <template is="dom-bind">
-                                    <iron-ajax url="data.json" last-response="{{data}}" auto></iron-ajax>
-                                    <iron-list items="[[data]]" as="item">
-                                        <template>
-                                            <div><p>Nombre: [[item.name]]</p></div>
-                                            <div><p>Opinion: [[item.opinion]]</p></div>
-                                        </template>
-                                    </iron-list>
-                                </template>
+                                
+                                <?php $comment_obj->showComments($user['id']);?>
+                                
                             </div>
                         </paper-card>
                         </div>
                         <div class="right-block__down">
                             <paper-card class="profile__tips" heading="Tips">
                                 <div class="card-content">
-                                    <template is="dom-bind">
-                                        <iron-ajax url="data.json" last-response="{{data}}" auto></iron-ajax>
-                                        <iron-list items="[[data]]" as="item">
-                                            <template>
-                                                <div>Título: [[item.title]]</div>
-                                                <div>Texto: [[item.text]]</div>
-                                            </template>
-                                        </iron-list>
-                                    </template>
+                                    <?php 
+                                      $tip_obj = new Tip();
+                                      $tip_obj->show_recent_user($user['id']);
+                                    ?>
                                 </div>
                             </paper-card>
                         </div>
@@ -261,24 +262,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <paper-toast id="toast">
       	<span class="toast-hide-button" role="button" tabindex="0" onclick="app.$.toast.hide()">Ok</span>
     </paper-toast>
-
-    <!-- Uncomment next block to enable Service Worker support (1/2) -->
-    <!--
-    <paper-toast id="caching-complete"
-                 duration="6000"
-                 text="Caching complete! This app will work offline.">
-    </paper-toast>
-
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          base-uri="bower_components/platinum-sw/bootstrap"
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="fastest"
-                         cache-config-file="cache-config.json">
-      </platinum-sw-cache>
-    </platinum-sw-register>
-    -->
 
 	</template>
 

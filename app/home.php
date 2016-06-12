@@ -97,7 +97,7 @@ $id_user = $_SESSION['user'][0]['id'];
 	            <iron-icon icon="settings"></iron-icon>
 	            <span>Settings</span>
 	        </a>
-	        <a>
+	        <a href="includes/logout.php">
 	            <iron-icon icon="exit-to-app"></iron-icon>
 	            <span>Logout</span>
 	        </a>
@@ -114,7 +114,7 @@ $id_user = $_SESSION['user'][0]['id'];
 
           <!-- Toolbar icons -->
           <a href="notifications.php" class="container" tabindex="0">
-            <span>Notificaciones</span>
+            <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
             <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
           </a>
           <style is="custom-style">
@@ -131,7 +131,8 @@ $id_user = $_SESSION['user'][0]['id'];
               --paper-badge-background: #CDDC39;
             }
           </style>
-          <paper-icon-button icon="refresh"></paper-icon-button>
+                          <a style="color: white;" href="index.php"><paper-icon-button icon="refresh"></paper-icon-button></a>
+
 
           <!-- Application name -->
           <div class="middle middle-container">
@@ -183,7 +184,7 @@ $id_user = $_SESSION['user'][0]['id'];
                                 --iron-icon-height: 16px;
                                 color: var(--paper-amber-500);
                             }
-                            iron-icon.star:last-of-type { color: var(--paper-grey-500); }
+                            iron-icon.star.grey { color: var(--paper-grey-500); }
                             .results__button { color: var(--primary-color); }
                         </style>
                         <?php 

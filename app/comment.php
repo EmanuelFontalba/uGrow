@@ -13,16 +13,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   if(!isset($_GET['id'])){
     header("Location:index.php");
-    echo "no id";
   }
 
   $not_obj = new Notification();
   $comment_obj = new Comment();
+  $offer_obj = new Offer();
 
   $notification = $not_obj->getForId($_GET['id']);
 
+
   if(isset($_POST['comment'])){
+    $offer = $offer_obj->get_byId($notification[0]['idOffer']);
+    var_dump($notification[0]['idOffer']);
     $comment_obj->add($_SESSION['user'][0]['id'], $notification[0]['emiter'], $_POST['comentario'], $_POST['rate']);
+    $offer_obj->modify_quantity($notification[0]['idOffer'], ($offer[0]['quantity']-$notification[0]['quantity']));
     $not_obj->delete($notification[0]['id']);
     header("Location: index.php");
   }
@@ -110,7 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <iron-icon icon="settings"></iron-icon>
               <span>Settings</span>
           </a>
-          <a>
+          <a href="includes/logout.php">
               <iron-icon icon="exit-to-app"></iron-icon>
               <span>Logout</span>
           </a>
@@ -191,7 +195,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <h1>"Todos hacemos UGrow!! Aporta a la comunidad"</h1>
             </div>
         </div>
-        <paper-fab icon="shopping-basket" class="fixed"></paper-fab>
+        <a href="offer.php"><paper-fab icon="shopping-basket" class="fixed"></paper-fab></a>
     </paper-scroll-header-panel>
 
     <paper-toast id="toast">

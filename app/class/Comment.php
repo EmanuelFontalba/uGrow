@@ -29,9 +29,11 @@ class Comment
 		return $this->_connexion->query(ALL_COMMENTS, array());
 	}
 
-	private function getComments($idUser)
+	public function getComments($idUser)
 	{
-		return $this->_connexion->query(ALL_COMMENTS_USER, array(":idUser"=>$idUser));
+		return $this->_connexion->query(
+			"SELECT * FROM comments where idUser_target = :idUser", 
+			array(":idUser"=>$idUser));
 	}
 
 	public function showComments($idUser)
@@ -39,13 +41,82 @@ class Comment
 		$comments = $this->getComments($idUser);
 		foreach ($comments as $key => $comment) {
 			$user = new User();
-			$user = $this->getUser_forId($comment['idUser_creator']);
-			?>
-			<div>
-				<h2><? echo $user;?></h2>
-				<p><?php echo $comment['comment'];?></p>
-			</div>
-			<?php
+			$user = $user->getAllUser_forId($comment['idUser_creator']);
+			
+			echo "<paper-listbox multi class='comment'>
+                <paper-item><i>".$user[0]['name']."</i></paper-item>
+                
+                <paper-item>".$comment['content']."</paper-item>
+            </paper-listbox>";
+			
+			
 		}
+	}
+
+	public function showStars($idUser)
+	{
+		$comments = $this->getComments($idUser);
+		$count = 0;
+		$sum = 0;
+		foreach ($comments as $key => $value) {
+			$sum = $sum + $value['value'];
+			$count = $count + 1;
+		}
+		if($count == 0){
+			$media = 0;
+		}else{
+			$media = $sum / $count;
+		}
+
+		if($media>4){
+			return '<iron-icon class="star" icon="star"></iron-icon>
+                  <iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star" icon="star"></iron-icon>';
+            
+		}
+		if($media>3){
+			return '<iron-icon class="star" icon="star"></iron-icon>
+                  <iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>';
+           
+		}
+
+		if($media>2){
+			return '<iron-icon class="star" icon="star"></iron-icon>
+                  <iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey " icon="star"></iron-icon>';
+            
+		}
+
+		if($media>1){
+			return '<iron-icon class="star" icon="star"></iron-icon>
+                  <iron-icon class="star" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>';
+           
+		}
+
+		if($media == 0){
+			return '<iron-icon class="star grey" icon="star"></iron-icon>
+                  <iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>';
+            
+		}
+
+		return '<iron-icon class="star" icon="star"></iron-icon>
+                  <iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>
+                 	<iron-icon class="star grey" icon="star"></iron-icon>';
+            
 	}
 }

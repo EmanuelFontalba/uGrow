@@ -4,7 +4,7 @@
     $id_user = $_SESSION['user'][0]['id'];
 		?>
 		<a href="notifications.php" class="container" tabindex="0">
-            <span>Notificaciones</span>
+            <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
             <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
           </a>
           <style is="custom-style">

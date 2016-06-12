@@ -4,6 +4,7 @@ if(!isset($_POST['trato'])){
 	header("Location: index.php");
 }else{
 	//work
+	
 	$n = new Notification();
 	$offer_obj = new Offer();
 	$offer = $offer_obj->get_byId($_POST['idOffer']);
@@ -12,6 +13,7 @@ if(!isset($_POST['trato'])){
 		$offer[0]['idUser'],
 		$offer[0]['idProduct'],
 		$_POST['product'],
-		$_POST['quantity']
+		$_POST['quantity'],
+		$_POST['idOffer']
 		);
 }

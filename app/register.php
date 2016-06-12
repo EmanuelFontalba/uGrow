@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 $_POST['birthdate'],
                 $_POST['description'],
                 $_POST['address'],
-                $_POST['city']
+                $_POST['busquedaAjax']
             );
             if($is_registered){
                 header("Location: index.php");
