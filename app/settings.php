@@ -216,8 +216,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 echo $_SESSION['user'][0]['lastname'];?>" >Apellidos</paper-input>
                                 <paper-input class="card__user" name="user" label="Usuario" required value="<?php 
                                 echo $_SESSION['user'][0]['user'];?>" >Usuario</paper-input>
-                                <paper-input type="password" id="password" class="card__password" name="password" label="Contraseña" required>Contraseña</paper-input>
-                                <paper-input type="password" id="password2" class="card__password2" name="password2" label="Repita contraseña" required>Repita contraseña</paper-input>
+                                <paper-input type="password" id="password" class="card__password" name="password" label="Contraseña" >Contraseña</paper-input>
+                                <paper-input type="password" id="password2" class="card__password2" name="password2" label="Repita contraseña" >Repita contraseña</paper-input>
                                 <paper-input id="mail" class="card__mail" name="mail" label="Mail" required value="<?php 
                                 echo $_SESSION['user'][0]['mail'];?>" >Mail</paper-input>
                                 <paper-input id="birthdate" class="card__birthdate" name="birthdate" label="Fecha nacimiento" required value="<?php 

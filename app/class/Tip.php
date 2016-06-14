@@ -94,12 +94,12 @@ class Tip
                   </div>
                 </paper-card></a>
                 <?php
-                if(!isset($_GET['id'])){
+            if(!isset($_GET['id']) || $_SESSION['user'][0]['rol']=='admin'){
                 ?>
-                <a class="delete" href="deletetip.php?id=<?php echo $tip['id'];?>">X</a></div>
-			
+                <a class="delete" href="deletetip.php?id=<?php echo $tip['id'];?>"><iron-icon icon="delete"></iron-icon></a>
+				
 			<?php
-			}
+			}?></div><?php
 		}
 	}
 

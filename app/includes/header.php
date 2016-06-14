@@ -21,6 +21,13 @@
               --paper-badge-background: #CDDC39;
             }
           </style>
+        <?php 
+          if($_SESSION['user'][0]['rol']=="admin"){
+            ?>
+             <a style="color: white;" href="admin.php" class="toolbar__left"><paper-icon-button icon="gavel"></paper-icon-button></a>
+            <?php
+          }
+        ?>
 		    <a style="color: white;" href="settings.php" class="toolbar__left"><paper-icon-button icon="settings"></paper-icon-button></a>
         <a style="color: white;" href="includes/logout.php" class="toolbar__right"><paper-icon-button icon="power-settings-new"></paper-icon-button></a>
        

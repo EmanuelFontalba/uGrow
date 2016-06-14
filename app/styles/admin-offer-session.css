@@ -1,5 +1,5 @@
 body {
-	background-color: #E0F2F1;
+	background-color: #D9DBD4;
 }
 
 #headerPanelMain .content {
@@ -16,7 +16,7 @@ body {
 	margin: 0 auto;
 }
 
-.card-product, .card-user, .card-offer, .card-session {
+.card-product, .card-user, .card-offer, .card-session, .card-user-search, .card-city {
 	width: 90%;
 	position: absolute;
 	left: 5%;
@@ -32,11 +32,19 @@ body {
 	top: 400px;
 }
 
+.card-user-search {
+	top: 610px;
+}
+
+.card-city{
+	top: 800px;
+}
+
 .card-product__header--small {
     margin-top: 10px;
 }
 
-.card-product__product, .card-user__user, .card-offer__offer {
+.card-product__product, .card-user__user, .card-offer__offer, .card-user-search__user, .card-city  {
 	margin-bottom: 10px;
 }
 
@@ -62,7 +70,7 @@ body {
 		text-shadow: 2px 2px 2px rgba(0, 0, 0, 1); 
 	}
 
-	.card-product, .card-user, .card-offer, .card-session{
+	.card-product, .card-user, .card-offer, .card-session, .card-user-search, .card-city {
 		width: 50%;
 	}
 }
@@ -74,6 +82,13 @@ body {
 
 	.card-user {
 		top: 420px;
+	}
+	.card-user-search{
+		top: 620px;
+	} 
+
+	.card-city{
+		top: 820px;
 	}
 
 	.card-offer, .card-session {
@@ -91,13 +106,25 @@ body {
 		margin-top: 10px;
 	}
 
-	.card-product, .card-offer, .card-session {
+	.card-product, .card-offer, .card-session , .card-user-search, .card-city {
 		width: 40%;
 		left: 20%;
 	}
 
 	.card-user {
 		top: 420px;
+		width: 40%;
+		left: 20%;
+	}
+
+	.card-user-search {
+		top: 620px;
+		width: 40%;
+		left: 20%;
+	}
+
+	.card-city{
+		top: 820px;
 		width: 40%;
 		left: 20%;
 	}
@@ -130,7 +157,7 @@ body {
 	margin: 0 auto;
 }
 
-.card-product, .card-user, .card-offer, .card-session, .card-comment {
+.card-product, .card-user, .card-offer, .card-session, .card-comment , .card-user-search, .card-city {
 	width: 90%;
 	position: absolute;
 	left: 5%;
@@ -145,6 +172,8 @@ body {
 .card-user {
 	top: 400px;
 }
+
+
 
 .card-product__header--small {
     margin-top: 10px;
@@ -176,7 +205,7 @@ body {
 		text-shadow: 2px 2px 2px rgba(0, 0, 0, 1); 
 	}
 
-	.card-product, .card-user, .card-offer, .card-session, .card-comment{
+	.card-product, .card-user, .card-offer, .card-session, .card-comment, .card-user-search, .card-city {
 		width: 50%;
 	}
 }
@@ -188,6 +217,14 @@ body {
 
 	.card-user {
 		top: 420px;
+	}
+
+	.card-user-search {
+		top: 620px;
+	}
+
+	.card-city{
+		top: 820px;
 	}
 
 	.card-offer, .card-session, .card-comment {
@@ -212,6 +249,18 @@ body {
 
 	.card-user {
 		top: 420px;
+		width: 40%;
+		left: 20%;
+	}
+
+	.card-user-search {
+		top: 620px;
+		width: 40%;
+		left: 20%;
+	}
+
+	.card-city{
+		top: 820px;
 		width: 40%;
 		left: 20%;
 	}

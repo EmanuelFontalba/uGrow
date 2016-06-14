@@ -30,6 +30,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     $user_array = $user_obj->getUser_forUserName($_POST['user_name']);
     $user_obj->close_account($user_array[0]['id']);
   }
+
+  if(isset($_POST['search'])){
+    $user_array = $user_obj->getUser_forUserName($_POST['user_name']);
+    header("Location: profile.php?id=".$user_array[0]['id']);
+  }
+
+  if(isset($_POST['addCity'])){
+    $city = new City();
+    $city->add($_POST['city']);
+  }
 ?>
 <html lang="en">
 
@@ -99,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Drawer Content -->
         <paper-menu attr-for-selected="data-route" selected="[[route]]">
             <a href="includes/logout.php">
-                <iron-icon icon="exit-to-app"></iron-icon>
+                <iron-icon icon="power-settings-new"></iron-icon>
                 <span>Logout</span>
             </a>
         </paper-menu>
@@ -130,7 +140,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Main Content -->
         <div class="content">
             <style is="custom-style">
-                .slogan, .card-product__header--large, .card-product__header--small, .card-user__header {
+                .slogan, .card-product__header--large, .card-product__header--small, .card-user__header, .card-user-search__header, .card-city__header {
                     color: var(--primary-color);
                 }
             </style>
@@ -155,6 +165,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <paper-input class="card-user__user" name="user_name" label="Nombre del Usuario" required>Nombre del Usuario</paper-input>
                             <div class="ripple-con">
                                 <input id="modify" class="btn" type="submit" name="delete-user" value="Eliminar"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
+                                <span class="ripple"></span>
+                            </div>
+                        </form>
+                    </div>
+                </paper-card>
+                <paper-card class="card-user-search">
+                    <div class="card-user-search__content">
+                        <h3 class="card-user-search__header">Buscar perfil de usuario</h3>
+                        <form method="post" action="admin.php" id="form">
+                            <paper-input class="card-user-search__user" name="user_name" label="Nombre del Usuario" required>Nombre del Usuario</paper-input>
+                            <div class="ripple-con">
+                                <input id="modify" class="btn" type="submit" name="search" value="Ir al perfil"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
+                                <span class="ripple"></span>
+                            </div>
+                        </form>
+                    </div>
+                </paper-card>
+                <paper-card class="card-city">
+                    <div class="card-city__content">
+                        <h3 class="card-city__header">Añadir nueva ciudad</h3>
+                        <form method="post" action="admin.php" id="form">
+                            <paper-input class="card-city__user" name="city" label="Nombre del Usuario" required>Ciudad</paper-input>
+                            <div class="ripple-con">
+                                <input id="modify" class="btn" type="submit" name="addCity" value="Insertar ciudad"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
                                 <span class="ripple"></span>
                             </div>
                         </form>

@@ -102,7 +102,7 @@ $id_user = $_SESSION['user'][0]['id'];
               <span>Settings</span>
           </a>
           <a href="includes/logout.php">
-              <iron-icon icon="exit-to-app"></iron-icon>
+              <iron-icon icon="power-settings-new"></iron-icon>
               <span>Logout</span>
           </a>
       </paper-menu>
@@ -118,7 +118,7 @@ $id_user = $_SESSION['user'][0]['id'];
 
           <!-- Toolbar icons -->
           <a href="notifications.php" class="container" tabindex="0">
-            <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
+            <span><?php echo $_SESSION['user'][0]['name']." ";?></span>
             <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
           </a>
           <style is="custom-style">

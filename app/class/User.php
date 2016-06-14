@@ -70,7 +70,7 @@
             if($name==""){ $name=$user_obj['name'];}
             if($lastname==""){ $lastname=$user_obj['lastname'];}
             if($new_user==""){ $new_user=$user_obj['user'];}
-            if($password==""){ $password=$user_obj['password'];}
+            if($password=="" || $password == " "){ $password=$user_obj['pass'];}
             else{
                 $password=md5($password);
             }

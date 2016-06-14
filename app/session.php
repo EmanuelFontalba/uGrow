@@ -77,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Drawer Content -->
         <paper-menu attr-for-selected="data-route" selected="[[route]]">
             <a data-route="logout" href="{{baseUrl}}logout">
-                <iron-icon icon="exit-to-app"></iron-icon>
+                <iron-icon icon="power-settings-new"></iron-icon>
                 <span>Logout</span>
             </a>
         </paper-menu>
@@ -92,7 +92,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span class="space"></span>
 
           <!-- Toolbar icons -->
-            <paper-icon-button icon="home"></paper-icon-button>
+            <a href="index.php" style="color: white; text-decoration: none;"><paper-icon-button icon="home"></paper-icon-button></a>
 
           <!-- Application name -->
             <div class="middle middle-container">

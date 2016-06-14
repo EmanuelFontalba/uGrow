@@ -32,7 +32,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     $comment_obj = new Comment();
     $offer_obj = new Offer();
-    $sowing_obj  = new Sowing();
+    $sowing_obj = new Sowing();
 
 ?>
 
@@ -90,30 +90,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       border-top: 1px solid #CCC;
       padding-top: 10px;
     }
-
-    .item_comment{
-        min-height: 40px;
-    }
-
-    .tip .title-text{
-        color: white !important;
-    }
+    
 
     .delete{
         position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 10px;
-        height: 10px;
-        line-height: 10px;
-        border-radius: 20px;
-        border: 2px solid white;
-        background: #F44336;
+        top: 5px;
+        right: 5px;
+        border-radius: 80px;
+        min-width: 20px;
+        min-height: 20px;
+        background: red;
+        padding: 5px;
         color: white;
-        padding: 10px;
         text-decoration: none;
-        font-weight: bold;
+        text-align: center;
     }
+
+    
   </style>
 </head>
 
@@ -145,7 +138,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <span>Settings</span>
                 </a>
                 <a href="includes/logout.php">
-                    <iron-icon icon="exit-to-app"></iron-icon>
+                    <iron-icon icon="power-settings-new"></iron-icon>
                     <span>Logout</span>
                 </a>
             </paper-menu>
@@ -161,7 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
                 <!-- Toolbar icons -->
                 <a href="notifications.php" class="container" tabindex="0">
-                    <span><?php echo $_SESSION['user'][0]['name']." ".$_SESSION['user'][0]['lastname'];?></span>
+                    <span><?php echo $_SESSION['user'][0]['name']." ";?></span>
                     <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
                   </a>
                   <style is="custom-style">
@@ -194,7 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <!-- Main Content -->
         	<div class="content">
                 <style is="custom-style">
-                    paper-card.profile__basic, paper-card.profile__offer, paper-card.profile__map, paper-card.profile__opinions, paper-card.profile__tips, paper-card.profile__future {
+                    paper-card.profile__basic, paper-card.profile__offer, paper-card.profile__contact, paper-card.profile__opinions, paper-card.profile__tips, paper-card.profile__future {
                         --paper-card-header-color: var(--primary-color);
                     }
                     iron-icon.star {
@@ -215,11 +208,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 <?php echo $user['description'];?>
                             </div>
                             <div class="card-actions">
-                                
                                 <div class="left">
                                     <?php echo($comment_obj->showStars($user['id']));?>
                                 </div>
                                 <span class="left"><?php echo $city;?></span>
+                            </div>
+                        </paper-card>
+                        <paper-card class="profile__contact" heading="Contacto">
+                            <div class="card-content">
+                                <paper-item class="profile__mail">Email:</paper-item><paper-item  class="profile__mail"><?php echo $user['mail'];?></paper-item><br>
+                                <paper-item class="profile__phone">Dirección:</paper-item><paper-item  class="profile__phone"><?php echo $user['location'];?></paper-item>
                             </div>
                         </paper-card>
                         <paper-card class="profile__offer" heading="Ofrezco">
@@ -229,25 +227,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                                 </paper-listbox>
                             </div>
                         </paper-card>
+                        <paper-card class="profile__future" heading="Próximas siembras">
+                            <div class="card-content">
+                                <?php $sowing_obj->show($user['id']);?>
+                            </div>
+                        </paper-card>
+                        
                     </div>
                     <div class="right-block">
                         <div class="right-block__up">
-                        <paper-card class="profile__map" heading="<?php echo $user['location'];?>">
-                            <div class="card-content">
-                                <paper-listbox multi>
-                                    <paper-item>Email:</paper-item>
-                                    
-                                    <paper-item><?php echo $user['mail'];?></paper-item>
-                                </paper-listbox>
-                            </div>
-                        </paper-card>
-                        <paper-card class="profile__opinions" heading="Últimas opiniones">
-                            <div class="card-content">
-                                
-                                <?php $comment_obj->showComments($user['id']);?>
-                                
-                            </div>
-                        </paper-card>
+                            <paper-card class="profile__opinions" heading="Opiniones">
+                                <div class="card-content">
+                                    <?php $comment_obj->showComments($user['id']);?>
+                                </div>
+                            </paper-card>
+                
                         </div>
                         <div class="right-block__down">
                             <paper-card class="profile__tips" heading="Tips">
@@ -261,13 +255,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </div>
                     </div>
                 </div>
-                <paper-card class="profile__future" heading="Próximas siembras">
-                    <div class="card-content">
-                        <paper-listbox multi>
-                                    <?php $sowing_obj->show($user['id']);?>
-                        </paper-listbox>
-                    </div>
-                </paper-card>
 	        </div>
             
             <a href="offer.php"><paper-fab icon="shopping-basket" class="fixed"></paper-fab></a>

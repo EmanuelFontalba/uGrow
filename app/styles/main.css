@@ -153,6 +153,11 @@ body {
   animation: none;
 }
 
+.title-text{
+        background: rgba(255,255,255,0.8);
+        width: 100%;
+    }
+
 @keyframes ripple {
   to {
     opacity: 0;

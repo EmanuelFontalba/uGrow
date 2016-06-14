@@ -11,6 +11,14 @@ class City
 		$this->_connexion = new Conexion();
 	}
 
+	public function add($name)
+	{
+		$this->_connexion->query(
+			"INSERT INTO cities(city) VALUES (:city)"
+			,
+			array(":city"=>$name));
+	}
+
 	private function getAll()
 	{
 		return $this->_connexion->query(ALL_CITIES,array());

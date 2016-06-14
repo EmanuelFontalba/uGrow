@@ -95,7 +95,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <span>Settings</span>
           </a>
           <a href="includes/logout.php">
-              <iron-icon icon="exit-to-app"></iron-icon>
+              <iron-icon icon="power-settings-new"></iron-icon>
               <span>Logout</span>
           </a>
       </paper-menu>

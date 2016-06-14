@@ -83,6 +83,10 @@
 
 		private function search($dir, $product)
 		{
+			if($product == "" || $product == " "){
+				return $this->_connexion->query(
+					"SELECT * FROM offers", array());
+			}
 			$result_prod = $this->search_product($product);
 			if($dir==""){
 				return $result_prod;
@@ -135,6 +139,14 @@
 						":id" => $id
 					)
 				);
+			$new_q = $this->_connexion->query(
+				"SELECT quantity FROM offers where id = :id",
+				array(":id"=>$id));
+			if($new_q[0]['quantity']<=0){
+				$this->_connexion->query(
+					"DELETE FROM offers where id = :id",
+					array(":id"=>$id));
+			}
 		}
 
 		public function show_forUser($idUser)

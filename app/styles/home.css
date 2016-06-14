@@ -1,5 +1,5 @@
 #main #mainContainer .content {
-	background-color: #E0F2F1;
+	background-color: #D9DBD4;
 	height: auto;
 }
 
@@ -35,6 +35,10 @@
 
 .paper-card-0 .tips__tip .header.paper-card .title-text.paper-card {
 	color: white;
+}
+
+.title-text{
+	color: #009688 !important;
 }
 
 .search-results{
