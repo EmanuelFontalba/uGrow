@@ -62,7 +62,7 @@
         {
             $user_obj = new User();
             $user_obj = $user_obj->getUser_forUserName($user);
-
+            echo $password;
             if(empty($user_obj)){
                 return false;
             }
@@ -70,7 +70,7 @@
             if($name==""){ $name=$user_obj['name'];}
             if($lastname==""){ $lastname=$user_obj['lastname'];}
             if($new_user==""){ $new_user=$user_obj['user'];}
-            if($password=="" || $password == " "){ $password=$user_obj['pass'];}
+            if($password=="" || $password == " " ){ $password=$user_obj[0]['pass'];}
             else{
                 $password=md5($password);
             }

@@ -96,7 +96,7 @@ class Tip
                 <?php
             if(!isset($_GET['id']) || $_SESSION['user'][0]['rol']=='admin'){
                 ?>
-                <a class="delete" href="deletetip.php?id=<?php echo $tip['id'];?>"><iron-icon icon="delete"></iron-icon></a>
+                <a class="delete" href="deletetip.php?id=<?php echo $tip['id'];?>&idUser=<?php echo $idUser;?>"><iron-icon icon="delete"></iron-icon></a>
 				
 			<?php
 			}?></div><?php

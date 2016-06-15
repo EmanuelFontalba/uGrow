@@ -4,5 +4,10 @@
 	if(isset($_GET['id'])){
 		$tip_obj = new Tip();
 		$tip_obj->delete($_GET['id']);
-		header("Location: profile.php");
+		if($_SESSION['user'][0]['rol']=="admin"){
+			header("Location:profile.php?id=".$_GET['idUser']);
+		}else{
+			header("Location: profile.php");
+		}
+		
 	}

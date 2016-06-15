@@ -3,21 +3,26 @@
     $notif = new Notification();
     $id_user = $_SESSION['user'][0]['id'];
 		?>
-		<a href="notifications.php" class="container" tabindex="0">
-            <span><?php echo $_SESSION['user'][0]['name'];?></span>
-            <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
+
+		        <span class="container" tabindex="0">
+            <a href="profile.php"><span><?php echo $_SESSION['user'][0]['name'];?></span></a>
+            <a href="notifications.php"><paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge></a></span>
           </a>
           <style is="custom-style">
-            .container {
-              text-decoration: none;
-              color: white;
+            .container{
               display: inline-block;
               margin-left: 30px;
               margin-right: 30px;
             }
-            .container > paper-badge {
-              --paper-badge-margin-left: 20px;
-              --paper-badge-margin-bottom: 0px;
+            .container > a {
+              text-decoration: none;
+              color: white;
+              display: inline-block;
+              
+            }
+            .container paper-badge {
+              --paper-badge-margin-left: 10px;
+              --paper-badge-margin-bottom: 30px;
               --paper-badge-background: #CDDC39;
             }
           </style>

@@ -18,6 +18,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     if(isset($_GET['id'])){
         $user = $user_obj->getAllUser_ForId($_GET['id'])[0];
+        if(empty($user)){
+            if($_SESSION['user'][0]['rol']=="admin"){
+                header("Location: admin.php");
+            }else{
+                header("Location: index.php");
+            }
+        }
     }else{
         $user = $_SESSION['user'][0];
     }
@@ -153,24 +160,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <span class="space"></span>
 
                 <!-- Toolbar icons -->
-                <a href="notifications.php" class="container" tabindex="0">
-                    <span><?php echo $_SESSION['user'][0]['name']." ";?></span>
-                    <paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge>
-                  </a>
-                  <style is="custom-style">
-                    .container {
-                      text-decoration: none;
-                      color: white;
+                <style is="custom-style">
+                    .container{
                       display: inline-block;
                       margin-left: 30px;
                       margin-right: 30px;
                     }
-                    .container > paper-badge {
-                      --paper-badge-margin-left: 20px;
-                      --paper-badge-margin-bottom: 0px;
-                      --paper-badge-background: #CDDC39;
+                    .container > a {
+                      text-decoration: none;
+                      color: white;
+                      display: inline-block;
+                      
+                    }
+                    .container paper-badge {
+                      --paper-badge-margin-left: 10px;
+                      --paper-badge-margin-bottom: 30px;
+                      --paper-badge-background: #CDDC39 !important;
                     }
                   </style>
+                <span class="container" tabindex="0">
+                    <a href="profile.php"><span><?php echo $_SESSION['user'][0]['name'];?></span></a>
+                    <a href="notifications.php"><paper-badge label="<?php $notif->show_count($id_user);?>"></paper-badge></a>
+                </span>
+          </a>
+          
                 <a style="color: white;" href="index.php"><paper-icon-button icon="home"></paper-icon-button></a>
 
                 <!-- Application name -->
@@ -216,8 +229,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </paper-card>
                         <paper-card class="profile__contact" heading="Contacto">
                             <div class="card-content">
-                                <paper-item class="profile__mail">Email:</paper-item><paper-item  class="profile__mail"><?php echo $user['mail'];?></paper-item><br>
-                                <paper-item class="profile__phone">Dirección:</paper-item><paper-item  class="profile__phone"><?php echo $user['location'];?></paper-item>
+                                <paper-item class="profile__mail"><strong>Email:</strong></paper-item><paper-item  class="profile__mail right"><?php echo $user['mail'];?></paper-item><br>
+                                <paper-item class="profile__phone"><strong>Dirección:</strong></paper-item><paper-item  class="profile__phone right"><?php echo $user['location'];?></paper-item>
                             </div>
                         </paper-card>
                         <paper-card class="profile__offer" heading="Ofrezco">

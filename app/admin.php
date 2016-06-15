@@ -186,7 +186,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="card-city__content">
                         <h3 class="card-city__header">Añadir nueva ciudad</h3>
                         <form method="post" action="admin.php" id="form">
-                            <paper-input class="card-city__user" name="city" label="Nombre del Usuario" required>Ciudad</paper-input>
+                            <paper-input class="card-city__user" name="city" label="Nombre de la ciudad" required>Ciudad</paper-input>
                             <div class="ripple-con">
                                 <input id="modify" class="btn" type="submit" name="addCity" value="Insertar ciudad"> <!-- poner disabled="true" cuando haya visto Emanuel el efecto ripple-->
                                 <span class="ripple"></span>

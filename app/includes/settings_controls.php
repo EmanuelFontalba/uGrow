@@ -13,6 +13,8 @@
                 $_POST['description'],
                 $_POST['address']
             );
+        $user_obj = new User();
+        $_SESSION['user'] = $user_obj->getUser_forUserName($_POST['user']);
     }
 
     if(isset($_POST['publish'])){
