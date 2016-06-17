@@ -6,15 +6,6 @@ body {
 	height: 500px;
 }
 
-.admin-content {
-	height: 900px!important;
-	background-color: #DADBD4;
-}
-
-.comment-content {
-	background-color: #DADBD4;
-}
-
 .card-product__header--large, .slogan {
 	display: none;
 }

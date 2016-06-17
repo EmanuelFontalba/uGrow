@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-06-2016 a las 20:23:40
+-- Tiempo de generación: 17-06-2016 a las 12:58:26
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.19
 
@@ -89,7 +89,10 @@ INSERT INTO `comments` (`id`, `idUser_creator`, `idUser_target`, `content`, `dat
 (21, 33, 19, 'Muy buenas patatas', '', 4),
 (22, 34, 35, 'El producto, regular', '', 2),
 (23, 34, 36, 'Odio a los manzanitas', '', 0),
-(24, 34, 19, 'No me gustaron nada, estaban arenosas', '', 1);
+(24, 34, 19, 'No me gustaron nada, estaban arenosas', '', 1),
+(25, 35, 36, 'Gran producto', '', 5),
+(26, 35, 19, 'Esta vez, las patatas no estaban tan mal', '', 4),
+(27, 19, 34, 'El producto regular', '', 3);
 
 -- --------------------------------------------------------
 
@@ -129,13 +132,12 @@ CREATE TABLE `notifications` (
 
 INSERT INTO `notifications` (`id`, `emiter`, `recept`, `product_interest`, `product_offer`, `quantity`, `type`, `idOffer`) VALUES
 (48, 36, 33, 8, 4, 2, 'ok', 67),
-(50, 36, 35, 8, 4, 2, 'ok', 67),
 (57, 19, 34, 8, 8, 1, 'ok', 71),
-(58, 19, 35, 8, 4, 1, 'ok', 70),
 (59, 19, 36, 8, 4, 1, 'ok', 70),
-(60, 32, 19, 4, 8, 4, 'trade', 70),
-(61, 33, 19, 8, 8, 4, 'trade', 71),
-(63, 34, 19, 8, 4, 3, 'ok', 55);
+(65, 19, 32, 8, 4, 4, 'ok', 70),
+(66, 19, 33, 8, 8, 4, 'ok', 71),
+(67, 19, 29, 4, 19, 2, 'trade', 42),
+(68, 29, 35, 10, 4, 5, 'ok', 42);
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,7 @@ INSERT INTO `offers` (`id`, `quantity`, `photo`, `idProduct`, `idUser`) VALUES
 (52, 34, '', 16, 33),
 (53, 11, '', 4, 33),
 (54, 5, '', 3, 33),
-(55, 26, '', 4, 34),
+(55, 23, '', 4, 34),
 (56, 23, '', 14, 34),
 (57, 5, '', 18, 34),
 (58, 7, '', 6, 34),
@@ -192,11 +194,18 @@ INSERT INTO `offers` (`id`, `quantity`, `photo`, `idProduct`, `idUser`) VALUES
 (64, 5, '', 2, 35),
 (65, 25, '', 8, 36),
 (66, 53, '', 10, 36),
-(67, 31, '', 4, 36),
+(67, 29, '', 4, 36),
 (68, 5, '', 2, 36),
-(70, 23, '', 4, 19),
+(70, 22, '', 4, 19),
 (71, 14, '', 8, 19),
-(72, 15, '', 1, 19);
+(72, 15, '', 1, 19),
+(73, 6, '', 19, 19),
+(74, 10, '', 15, 19),
+(75, 4, '', 18, 19),
+(76, 12, '', 12, 19),
+(77, 45, '', 6, 19),
+(78, 4, '', 19, 35),
+(79, 7, '', 11, 35);
 
 -- --------------------------------------------------------
 
@@ -281,7 +290,14 @@ INSERT INTO `siembra` (`id`, `idUser`, `idProduct`, `date`) VALUES
 (29, 36, 5, '01-01-2017'),
 (30, 36, 7, '01-01-2017'),
 (31, 19, 8, '11-12-2016'),
-(32, 19, 10, '20-03-2017');
+(32, 19, 10, '20-03-2017'),
+(33, 19, 12, '30-10-2016'),
+(34, 19, 19, '04-01-2016'),
+(35, 19, 16, '20-08-2016'),
+(36, 35, 19, '4'),
+(37, 35, 13, '20-08-2016'),
+(38, 35, 19, '20-08-2016'),
+(39, 35, 15, '20-08-2016');
 
 -- --------------------------------------------------------
 
@@ -311,13 +327,20 @@ INSERT INTO `tips` (`id`, `idUser`, `title`, `date`, `content`, `link`) VALUES
 (17, 33, 'uGrow Noticia en TV', '13-06-2016', 'Ya somos noticia!', 'www.a3media.com'),
 (18, 34, 'Usando uGrow', '13-06-2016', 'Primeros pasos para usar uGrow', 'www.ugrow.es'),
 (19, 34, 'Ventajas de los huertos urbanos', '13-06-2016', 'Lo que nos ofrecen los huertos urbanos', 'www.google.es'),
-(20, 35, 'Siembra...', '13-06-2016', 'Siembra, cuida y recolecta', 'www.google.es'),
 (21, 35, 'Growers por el mundo', '13-06-2016', 'Blog de growers que facilitan sus perfiles', 'www.linkedin.com'),
-(22, 36, 'Apple y uGrow', '13-06-2016', 'Las manzanas de uGrow', 'www.apple.es'),
-(23, 19, 'Manteniendo el huerto sano', '14-06-2016', 'Si mantienes el huerto sano, todo sabrá mucho mejor', 'www.google.es'),
 (24, 19, 'El origen de uGrow', '14-06-2016', 'La historia de un proyecto de fin de ciclo', 'www.ugrow.com'),
 (25, 19, 'Adorna el huerto', '14-06-2016', 'Decorando el huerto para que sea más agradable', 'www.google.es'),
-(26, 19, 'Tiendas recomendadas', '14-06-2016', 'Lugares donde comprar de todo para tus huertos', 'www.emanuelfontalba.es');
+(26, 19, 'Tiendas recomendadas', '14-06-2016', 'Lugares donde comprar de todo para tus huertos', 'www.emanuelfontalba.es'),
+(27, 19, 'Hablemos de tierra', '15-06-2016', 'Que tierra usar para cada tipo de producto', 'www.gooogle.es'),
+(28, 19, 'Siembra...', '15-06-2016', 'Ten un buen huerto urbano', 'www.iesgrancapitan.org'),
+(29, 19, 'Siembra sin morir en el intento', '15-06-2016', 'Consejos básicos para comenzar', 'www.google.es'),
+(30, 35, 'uGrow a la orden del día', '15-06-2016', 'Todas las ventajas de ser Grower', 'www.ugrow.com'),
+(31, 35, 'A fuego lento', '15-06-2016', 'Con calma, tu huerto mucho más sano', 'www.rafamirandaweb.es'),
+(32, 35, 'Tabaco como fertilizante', '15-06-2016', 'En este post hablan de usar el tabaco como fertilizante para tu huerto urbano', 'www.google.es'),
+(33, 35, 'Futuras mejoras de uGrow', '15-06-2016', 'Todas las próximas mejoras de uGrow', 'www.ugrow.com/noticias/'),
+(34, 35, 'Beneficios de los vegetales', '15-06-2016', 'Todos los beneficios de los vegetales, si son de huertos propios, mejor!', 'www.google.es'),
+(35, 34, 'La siembra del apio', '15-06-2016', 'Los mejores consejos para sembrar apio', 'www.facebook.com'),
+(36, 34, 'Riega correctamente', '15-06-2016', 'Mini tutorial de distintas formas de regar', 'www.google.es');
 
 -- --------------------------------------------------------
 
@@ -348,13 +371,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user`, `pass`, `name`, `lastname`, `mail`, `birthdate`, `trades`, `rating`, `picture`, `description`, `location`, `register`, `idCity`, `rol`) VALUES
-(19, 'Fonty', 'a749ab61457d462d37ceb9c8f1f19473', 'Emanuel', 'Galván', 'info@emanuelfontalba.es', '30-09-1991', 0, 0, '', 'Un buen usuario', 'Calle Judios 10', '27-05-2016', 1, 'admin'),
+(19, 'Fonty', 'a749ab61457d462d37ceb9c8f1f19473', 'Emanuel', 'Galván', 'info@emanuelfontalba.es', '30-09-1991', 0, 0, '', 'Programador, amante de los animales y la naturaleza. Miembro fundador de uGrow. Rojo, muy rojo.', 'Calle Judios 10', '27-05-2016', 1, 'admin'),
 (28, 'javi', 'a749ab61457d462d37ceb9c8f1f19473', 'Javier', 'Benitez del Pozo', 'info@javibenitez.com', '04-08-1990', 0, 0, '', 'Soy un entusiasmado de la naturaleza, me gusta comer cosas frescas y naturales, de ahí mi pasión por los huertos urbanos.', 'C/ Arcos de la frontera n.10 1-2', '13-06-2016', 1, 'user'),
 (29, 'francis', 'a749ab61457d462d37ceb9c8f1f19473', 'Francisco', 'Duran Castillejo', 'info@francisduran.com', '30-07-1958', 0, 0, '', 'Tras ver la oferta que propone el mercado hoy en día con los vegetales, decidí crearme mi propio huerto urbano en el patio de casa. ', 'C/ Sagasta n.10 ', '13-06-2016', 1, 'user'),
 (32, 'isi', 'a749ab61457d462d37ceb9c8f1f19473', 'Isabel', 'Navarro Suarez', 'info@isabelnavarro.es', '04-12-1975', 0, 0, '', 'Junto al mar, disfruto cuidando mi huerto urbano', 'C/ Marinera n20', '13-06-2016', 7, 'user'),
 (33, 'rober', 'a749ab61457d462d37ceb9c8f1f19473', 'Roberto Carlos', 'Flores Gomez', 'info@robertocarlos.com', '20-09-1993', 0, 0, '', 'No soy el jugador de futbol. Apasionado de lo natural y la belleza verde. Nuevo Grower!', 'C/ Trinidad n.10 Esc A 2-4', '13-06-2016', 3, 'user'),
 (34, 'lauri', 'a749ab61457d462d37ceb9c8f1f19473', 'Laura', 'Ruiz Perez ', 'info@lauri.es', '12-03-1978', 0, 0, '', 'Mi pasión por las frutas y verduras viene desde pequeña en el huerto de mi abuelo. Ahora no puedo pasar un día sin visitar el de mi patio.', 'C/Olivares n.10', '13-06-2016', 4, 'user'),
-(35, 'juanji', 'a749ab61457d462d37ceb9c8f1f19473', 'Juan', 'Jimenez Muñoz', 'info@juanji.com', '04-03-1992', 0, 0, '', 'Naturalista de extremo a extremo!', 'C/Almanzor n34 ', '13-06-2016', 5, 'user'),
+(35, 'rafa', 'a749ab61457d462d37ceb9c8f1f19473', 'Rafael', 'Miranda Ibañez', 'info@rafamirandaweb.com', '04-03-1992', 0, 0, '', 'Naturalista de extremo a extremo! Miembro fundador de uGrow. Sibarita.', 'C/Almanzor n34 ', '13-06-2016', 5, 'admin'),
 (36, 'david', 'a749ab61457d462d37ceb9c8f1f19473', 'David', 'Peralvo Gomez', 'info@davidperalvo.com', '09-19-1991', 0, 0, '', 'Sevillano y grower', 'C/Huerto n.45 ', '13-06-2016', 3, 'user');
 
 --
@@ -442,7 +465,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT de la tabla `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT de la tabla `exchange`
 --
@@ -452,12 +475,12 @@ ALTER TABLE `exchange`
 -- AUTO_INCREMENT de la tabla `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT de la tabla `offers`
 --
 ALTER TABLE `offers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 --
 -- AUTO_INCREMENT de la tabla `products`
 --
@@ -467,17 +490,17 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `siembra`
 --
 ALTER TABLE `siembra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT de la tabla `tips`
 --
 ALTER TABLE `tips`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- Restricciones para tablas volcadas
 --

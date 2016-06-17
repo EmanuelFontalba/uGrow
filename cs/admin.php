@@ -138,7 +138,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-toolbar>
 
         <!-- Main Content -->
-        <div class="content admin-content">
+        <div class="content">
             <style is="custom-style">
                 .slogan, .card-product__header--large, .card-product__header--small, .card-user__header, .card-user-search__header, .card-city__header {
                     color: var(--primary-color);
